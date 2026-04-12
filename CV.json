@@ -1,0 +1,82 @@
+{
+  "name": "Jane Doe",
+  "title": "Senior Software Engineer",
+  "contact": {
+    "email": "jane.doe@email.com",
+    "phone": "(555) 123-4567",
+    "location": "San Francisco, CA",
+    "linkedin": "linkedin.com/in/janedoe",
+    "github": "github.com/janedoe",
+    "website": "janedoe.dev"
+  },
+  "summary": "Experienced software engineer with 8+ years building scalable web applications and distributed systems. Passionate about clean code, developer tooling, and mentoring early-career engineers.",
+  "experience": [
+    {
+      "company": "Acme Corp",
+      "title": "Senior Software Engineer",
+      "location": "San Francisco, CA",
+      "start": "Jan 2021",
+      "end": "Present",
+      "bullets": [
+        "Led architecture and delivery of a microservices migration, reducing p99 latency by 40% across core APIs.",
+        "Mentored a team of 4 engineers, conducting weekly code reviews and bi-weekly 1:1s.",
+        "Designed an internal feature-flag system now used by 12 product teams.",
+        "Drove adoption of TypeScript across the frontend monorepo, cutting runtime errors by 30%."
+      ]
+    },
+    {
+      "company": "Bright Labs",
+      "title": "Software Engineer",
+      "location": "Remote",
+      "start": "Jun 2018",
+      "end": "Dec 2020",
+      "bullets": [
+        "Built and maintained REST and GraphQL APIs serving 2M+ monthly active users.",
+        "Optimized PostgreSQL query performance, reducing average query time from 800ms to 95ms.",
+        "Collaborated with design and product to ship a redesigned onboarding flow, improving activation by 22%."
+      ]
+    },
+    {
+      "company": "Startup XYZ",
+      "title": "Junior Developer",
+      "location": "Austin, TX",
+      "start": "Aug 2016",
+      "end": "May 2018",
+      "bullets": [
+        "Developed full-stack features using React and Node.js for a B2B SaaS platform.",
+        "Wrote integration and unit tests, bringing code coverage from 18% to 74%."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Texas at Austin",
+      "degree": "B.S. Computer Science",
+      "location": "Austin, TX",
+      "start": "Aug 2012",
+      "end": "May 2016",
+      "notes": "GPA 3.8 — Dean's List 2014, 2015, 2016"
+    }
+  ],
+  "skills": {
+    "Languages": ["Python", "TypeScript", "JavaScript", "Go", "SQL"],
+    "Frameworks & Libraries": ["React", "Node.js", "FastAPI", "Django", "GraphQL"],
+    "Infrastructure & Tools": ["AWS", "Docker", "Kubernetes", "PostgreSQL", "Redis", "GitHub Actions"]
+  },
+  "projects": [
+    {
+      "name": "OpenTrace",
+      "url": "github.com/janedoe/opentrace",
+      "description": "Open-source distributed tracing library for Node.js with zero-config setup and OpenTelemetry compatibility. 1.2k GitHub stars."
+    },
+    {
+      "name": "QuickForm",
+      "url": "quickform.dev",
+      "description": "Headless React form library with built-in validation, 4kb gzipped. Featured in the React Newsletter."
+    }
+  ],
+  "certifications": [
+    "AWS Certified Solutions Architect – Associate (2023)",
+    "Certified Kubernetes Administrator (CKA) (2022)"
+  ]
+}
