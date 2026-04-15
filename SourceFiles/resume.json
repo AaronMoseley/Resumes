@@ -1,0 +1,135 @@
+{
+  "name": "Aaron Moseley",
+  "contact": {
+    "email": "amoseley018@gmail.com",
+    "location": "Lexington, KY",
+    "linkedin": "https://www.linkedin.com/in/aaron-moseley/",
+    "website": "https://aaronmoseley.github.io/"
+  },
+  "experience": [
+    {
+      "company": "Carlson Software",
+      "title": "Machine Learning Engineer",
+      "start": "August 2024",
+      "end": "Current",
+      "bullets": [
+        "Leading development and release of multiple new full-length ML pipelines, including custom data annotation tools, model architectures, and post-processing steps, aimed at detecting the boundaries of materials, roadways, curbs, and paint lines in aerial images",
+        "Designed two novel model architectures with PyTorch leveraging semi-supervised and multi-task learning, both resulting in more than a 20% improvement over previous strategies",
+        "Developing extensive tooling for ground-truth data creation using C++, PyQt, and SQL to transform dozens of drone-captured orthomosaics into usable labeled data for computer vision models",
+        "Developed modular plugin system for a point cloud visualization software using C++ and ZeroMQ",
+        "Created HTTP server, API, and web pages to automate and visualize ML model training, inference, and evaluation"
+      ]
+    },
+    {
+      "company": "Carlson Software",
+      "title": "Machine Learning Engineer Intern",
+      "start": "May 2024",
+      "end": "August 2024"
+    },
+    {
+      "company": "Infineon Technologies",
+      "title": "Computer Engineering Intern",
+      "start": "May 2023",
+      "end": "August 2023",
+      "bullets": [
+        "Developed physical verification rules in SVRF and designed transistor-level validation cells for unit testing"
+      ]
+    },
+    {
+      "company": "University of Kentucky",
+      "title": "Machine Learning Research Assistant",
+      "start": "Aug 2016",
+      "end": "May 2018",
+      "bullets": [
+        "Used PyTorch to develop a novel training approach for medical image segmentation models, shown to improve over baselines by up to 32.4% across multiple metrics and datasets",
+        "Papers published in ISBI 2024 and MELBA, poster presented at CCS 2023, received UK research fellowship"
+      ]
+    },
+    {
+      "company": "Lockheed Martin",
+      "title": "Engineering and Technology Intern",
+      "start": "May 2022",
+      "end": "August 2022",
+      "bullets": [
+        "Created $33,000 in annual savings and reduced report creation time by 90% by building automation tools with VBA"
+      ]
+    }
+  ],
+  "publications": [
+    {
+      "name": "PolyCL: Context-Aware Contrastive Learning for Image Segmentation",
+      "url": "https://aaronmoseley.github.io/downloads/PolyCLPaper.pdf",
+      "bullets": [
+        "Novel contrastive learning strategy for medical image segmentation models, shown to significantly improve over baselines",
+        "Published at ISBI 2024, First author"
+      ]
+    },
+    {
+      "name": "SkelPy: A graphic user interface–based approach for skeletonizing fungal networks",
+      "url": "https://www.researchgate.net/publication/403091139_SkelPy_A_graphic_user_interface-based_approach_for_skeletonizing_fungal_networks",
+      "bullets": [
+        "Fully open source and modular skeletonization tool for biology researchers analyzing fungal structures at scale",
+        "Published in Applications in Plant Sciences, Primary developer on project"
+      ]
+    },
+    {
+      "name": "Development of a Modular Current-Mode NaI(Tl) Detector Array for Parity Odd (n,γ) Cross Section Measurements",
+      "url": "https://arxiv.org/abs/2604.06459",
+      "bullets": [
+        "A detector array, deployed on a particle accelerator at the J-PARC laboratory, for which I built the data acquision system's software and firmware"
+      ]
+    },
+    {
+      "name": "Domain and Task-Focused Example Selection for Data-Efficient Contrastive Medical Image Segmentation",
+      "url": "https://arxiv.org/pdf/2505.19208",
+      "bullets": [
+        "An expansion of my PolyCL contrastive learning framework to more datasets and comparisons",
+        "Published in MELBA"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Kentucky",
+      "degree": "Bachelor of Science in Computer Science and Mathematics",
+      "start": "August 2020",
+      "end": "May 2024",
+      "bullets": [
+        "GPA: 3.97 / 4.0",
+        "Lewis Honors College, Competitive Programming Team (placed 1st in Kentucky at ICPC Regionals 2024), Undergraduate Science Journal Club",
+        "Department of Computer Science Award for Outstanding Academic Achievement, Dean's List for all 8 semesters",
+        "Undergraduate teaching assistant for classes covering Linux, intermediate C++, and UI development"
+      ]
+    }
+  ],
+  "skills": {
+    "Languages": ["Python", "Java", "C#", "C++", "C", "SQL", "LaTeX"],
+    "Frameworks, Libraries, Tools": ["PyTorch", "PyTorch Lightning", "HDF5Lib", "Qt/PyQt", "Vulkan", "Unity"]
+  },
+  "projects": [
+    {
+      "name": "Context-aware Multitasking for Medical Image Segmentation",
+      "url": "https://aaronmoseley.github.io/downloads/ContextAwareMultitasking.pdf",
+      "bullets": [
+        "Novel multi-tasking framework that combines segmentation and classification for medical images",
+        "Shows significant improvement over baseline and pre-trained models in Dice score and Haussdorf distance"
+      ]
+    },
+    {
+      "name": "Volt Engine",
+      "url": "https://github.com/AaronMoseley/VoltEngine",
+      "bullets": [
+        "Vulkan rendering engine written in C++/HLSL, implements Blinn-Phong lighting with multiple sources",
+        "Allows for modifiable instance data (textures, transforms, etc.), adding/removing/modifying objects at runtime, and text rendering"
+      ]
+    },
+    {
+      "name": "Shoulder-Mounted Space Program",
+      "url": "http://www.shouldermountedspaceprogram.com/",
+      "bullets": [
+        "A fully featured game built in Unity, released in December 2025, that features a custom realistic gravity simulation",
+        "Successfully coordinated a small team of artists, playtesters, and a composer to get the game ready for release"
+      ]
+    }
+  ]
+}

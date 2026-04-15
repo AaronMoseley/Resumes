@@ -1,0 +1,184 @@
+{
+  "name": "Aaron Moseley",
+  "contact": {
+    "email": "amoseley018@gmail.com",
+    "location": "Lexington, KY",
+    "linkedin": "https://www.linkedin.com/in/aaron-moseley/",
+    "website": "https://aaronmoseley.github.io/"
+  },
+  "research_experience": [
+    {
+      "company": "Lousiana State University",
+      "title": "Computational Biology Research Intern",
+      "start": "June 2025",
+      "end": "Current",
+      "bullets": [
+        "Worked to assist Dr. Jordan Dowell’s biology research lab in analyzing image data related to fungi",
+        "Created an open-source, modular, and easy-to-use software package (SkelPy) with Python and PyQt that automates the creation of skeletons from images of fungal structures",  
+        "Wrote extensive documentation on how to use and modify SkelPy for a researcher’s specific purpose",
+        "SkelPy on Github: https://github.com/AaronMoseley/SkelPy"
+      ]
+    },
+    {
+      "company": "University of Kentucky",
+      "title": "Medical Imaging/Machine Learning Research Assistant",
+      "start": "January 2023",
+      "end": "January 2024",
+      "bullets": [
+        "Worked in Dr. Abdullah-Al-Zubaer Imran’s lab to find novel training techniques and architecture improvements for medical image segmentation models",
+        "Created an innovative contrastive learning strategy and multi-tasking architecture that was shown to significantly improve performance over baselines in segmenting the liver from CT scans",  
+        "Awarded an Undergraduate Engineering Research Fellowship for Fall 2023 by the University of Kentucky College of Engineering"
+      ]
+    },
+    {
+      "company": "University of Kentucky",
+      "title": "Nuclear Physics Research Assistant",
+      "start": "August 2022",
+      "end": "December 2023",
+      "bullets": [
+        "Worked with Dr. Christopher Crawford as part of the Neutron Optics Parity and Time Reversal Experiment (NOPTREX)",
+        "Used C++, ROOT framework, and HDF5Lib to create a high-speed data acquisition system for the NOPTREX experiment investigating gamma radiation emissions from decaying neutrons",  
+        "Validated the data acquisition system in a successful test at Japan Proton Accelerator Research Complex"
+      ]
+    }
+  ],
+  "experience": [
+    {
+      "company": "Carlson Software",
+      "title": "Machine Learning Engineer",
+      "start": "August 2024",
+      "end": "Current",
+      "bullets": [
+        "Leading development and release of multiple new full-length ML pipelines, including custom data annotation tools, model architectures, and post-processing steps, aimed at detecting the boundaries of materials, roadways, curbs, and paint lines in aerial images",
+        "Designed two novel model architectures with PyTorch leveraging semi-supervised and multi-task learning, both resulting in more than a 20% improvement over previous strategies",
+        "Developing extensive tooling for ground-truth data creation using C++, PyQt, and SQL to transform dozens of drone-captured orthomosaics into usable labeled data for computer vision models",
+        "Developed modular plugin system for a point cloud visualization software using C++ and ZeroMQ",
+        "Created HTTP server, API, and web pages to automate and visualize ML model training, inference, and evaluation"
+      ]
+    },
+    {
+      "company": "Carlson Software",
+      "title": "Machine Learning Engineer Intern",
+      "start": "May 2024",
+      "end": "August 2024"
+    },
+    {
+      "company": "Infineon Technologies",
+      "title": "Computer Engineering Intern",
+      "start": "May 2023",
+      "end": "August 2023",
+      "bullets": [
+        "Developed physical verification rules in Siemens’ Standard Verification Rule Format (SVRF) and designed transistor-level validation cells for unit testing using Cadence Virtuoso",
+        "Created comprehensive Vim syntax highlighter for SVRF using Vimscript"
+      ]
+    },
+    {
+      "company": "Lockheed Martin",
+      "title": "Engineering and Technology Intern",
+      "start": "May 2022",
+      "end": "August 2022",
+      "bullets": [
+        "Built data analysis and report automation tools using VBA framework and Microsoft Excel",
+        "Completed projects creating $33,000 in annual savings and reducing time spent generating reports by 90%",
+        "Held secret-level United States security clearance with the U.S. Department of Defense"
+      ]
+    }
+  ],
+  "teaching_experience": [
+    {
+      "company": "University of Kentucky",
+      "title": "Computer Graphics and UI (CS335) Grader",
+      "start": "January 2024",
+      "end": "May 2024",
+      "bullets": [
+        "Graded assignments and exams for more than 60 students on topics covering UI development, computer graphics, and image manipulation",
+        "Regularly held office hours for students with questions on grading and assignments"
+      ]
+    },
+    {
+      "company": "University of Kentucky",
+      "title": "Intermediate C++ and Linux (CS216) Teaching Assistant",
+      "start": "August 2022",
+      "end": "May 2023",
+      "bullets": [
+        "Regularly lectured multiple lab sections on topics including intermediate C++, Unix, Bash, and Vim",
+        "Provided individualized help for students during lab and outside of class time",  
+        "Held weekly office hours and graded classwork and exams for more than 30 students"
+      ]
+    },
+    {
+      "company": "University of Kentucky",
+      "title": "Introductory C++ and Linux (CS215) Teaching Assistant",
+      "start": "January 2022",
+      "end": "May 2022",
+      "bullets": [
+        "Provided lab instruction covering introductory C++ in conjunction with course instructor",
+        "Held office hours and graded coursework and exams for over 25 students"
+      ]
+    }
+  ],
+  "publications": {
+    "published_papers": [
+      "Moseley, Aaron & Imran, Abdullah-Al-Zubaer. (2024). PolyCL: Context-Aware Contrastive Learning for Image Segmentation. 10.1109/ISBI56570.2024.10635698.",
+      "Ward, T., Moseley, A., & Imran, A.-A.-Z. (2025). Domain and Task-Focused Example Selection for Data-Efficient Contrastive Medical Image Segmentation. https://arxiv.org/abs/2505.19208",
+      "Madrigal, Melanie & Moseley, Aaron & Moseley, Jenna & Dowell, Jordan. (2026). SkelPy: A graphic user interface–based approach for skeletonizing fungal networks. Applications in Plant Sciences. 10.1002/aps3.70049.",
+      "Mills, J., Otero Munoz, J., Dickerson, K., Britt, I., Couture, A., Doskow, J., Fry, J., Luxnat, M., Moseley, A., Novikov, I., Quintinar-Pe˜na, A., Richburg, A., Samiei, S., Schaper, D., Slone, D., Snow, W., Visser, G., Winkelbauer, J. (2026). Development of a Modular Current-Mode NaI(Tl) Detector Array for Parity Odd (n,γ) Cross Section Measurements."
+    ],
+    "presentations": [
+      "A. Moseley, A. Imran, “Context-aware contrastive pretraining for improved medical image segmentation,”Annual Commonwealth Computational Summit (CCS): Artificial Intelligence, Lexington, KY, October 2023.",
+      "A. Moseley, J. Mills, J. Fry, C. Crawford, ”Developing a Readout Software for the NOPTREX Experiment”, American Physical Society Meeting, Minneapolis, MI, April 2023, National Conference on Undergraduate Research, Eau Claire, WI, April 2023.",
+      "A. Moseley, A. Wang, A. Imran, ”Context-Aware Multitasking for Medical Image Segmentation”, University of Kentucky 5 Minute Fast Track, Lexington, KY, October 2023."
+    ]
+  },
+  "education": [
+    {
+      "institution": "University of Kentucky",
+      "degree": "Bachelor of Science in Computer Science and Mathematics",
+      "start": "August 2020",
+      "end": "May 2024",
+      "bullets": [
+        "GPA: 3.97 / 4.0",
+        "Member of the Lewis Honors College",
+        "Placed 1st in Kentucky at the 2024 International Collegiate Programming Contest Mid-Central Regionals",
+        "Earned the Department of Computer Science Award for Outstanding Academic Achievement",
+        "Placed on the Dean’s List for all semesters",
+        "Earned the Provost Scholarship and Lester Engineering Scholarship",
+        "Member of the Undergraduate Science Journal Club",
+      ]
+    }
+  ],
+  "skills": {
+    "Languages": ["Python", "Java", "C#", "C++", "C", "SQL", "LaTeX"],
+    "Frameworks, Libraries, Tools": ["PyTorch", "PyTorch Lightning", "HDF5Lib", "Qt/PyQt", "Vulkan", "Unity"]
+  },
+  "projects": [
+    {
+      "name": "Context-aware Multitasking for Medical Image Segmentation",
+      "url": "https://aaronmoseley.github.io/downloads/ContextAwareMultitasking.pdf",
+      "bullets": [
+        "Novel multi-tasking framework that combines segmentation and classification for medical images",
+        "Shows significant improvement over baseline and pre-trained models in Dice score and Haussdorf distance"
+      ]
+    },
+    {
+      "name": "Volt Engine",
+      "url": "https://github.com/AaronMoseley/VoltEngine",
+      "bullets": [
+        "An in-progress open source rendering engine built in Vulkan with C++, HLSL, Qt, and GLM",
+        "Provides a scene-object-component system with per-instance data modifiable at runtime",
+        "Implements a simple text-rendering system and Qt widgets around the render surface",
+        "A small lighting demo with a first-person controller is included in the repository that implements the Blinn-Phong algorithm with multiple light sources of varying colors and intensities"
+      ]
+    },
+    {
+      "name": "Shoulder-Mounted Space Program",
+      "url": "http://www.shouldermountedspaceprogram.com/",
+      "bullets": [
+        "A game built in Unity with C# where the player launches themselves from planet to planet with a rocket launcher as the only form of travel",
+        "Uses a custom realistic gravity simulation to determine the movement of planets, debris, and the player",
+        "Includes two unique game modes, 15 levels that each introduce a new mechanic, and a final boss fight",
+        "Shoulder-Mounted Space Program was released on Steam on December 17, 2025"
+      ]
+    }
+  ]
+}

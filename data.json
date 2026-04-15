@@ -1,0 +1,81 @@
+{
+  "templates": [
+    {
+      "id": "tpl_resume",
+      "name": "Standard Resume",
+      "description": "One-page resume with experience, education, and skills",
+      "page_size": "letter",
+      "sections": [
+        "summary",
+        "experience",
+        "education",
+        "skills",
+        "projects",
+        "certifications"
+      ],
+      "style": {
+        "font_name": "Times-Roman",
+        "font_name_bold": "Times-Bold",
+        "font_name_italic": "Times-Italic",
+        "size_name": 22,
+        "size_title": 10,
+        "size_contact": 9,
+        "size_section": 10,
+        "size_body": 9,
+        "size_bullet": 9,
+        "margin_top": 0.65,
+        "margin_bottom": 0.65,
+        "margin_left": 0.75,
+        "margin_right": 0.75,
+        "space_after_name": 2,
+        "space_after_contact": 6,
+        "space_after_section": 3,
+        "space_after_entry": 5,
+        "space_after_bullet": 1,
+        "space_between_sections": 6,
+        "rule_thickness": 0.6,
+        "bullet_char": "\u2022",
+        "bullet_indent": 12
+      }
+    },
+    {
+      "id": "tpl_cv",
+      "name": "Academic CV",
+      "description": "Expanded CV with publications focus; A4 page size",
+      "page_size": "A4",
+      "sections": [
+        "summary",
+        "education",
+        "experience",
+        "skills",
+        "projects",
+        "certifications"
+      ],
+      "style": {
+        "font_name": "Helvetica",
+        "font_name_bold": "Helvetica-Bold",
+        "font_name_italic": "Helvetica-Oblique",
+        "size_name": 20,
+        "size_title": 11,
+        "size_contact": 9,
+        "size_section": 10,
+        "size_body": 9,
+        "size_bullet": 9,
+        "margin_top": 1.0,
+        "margin_bottom": 1.0,
+        "margin_left": 1.0,
+        "margin_right": 1.0,
+        "space_after_name": 3,
+        "space_after_contact": 8,
+        "space_after_section": 4,
+        "space_after_entry": 6,
+        "space_after_bullet": 1,
+        "space_between_sections": 8,
+        "rule_thickness": 0.4,
+        "bullet_char": "\u2013",
+        "bullet_indent": 14
+      }
+    }
+  ],
+  "jobs": []
+}
