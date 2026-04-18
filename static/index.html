@@ -8,641 +8,297 @@
   @import url('https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@300;400;500;600&family=DM+Sans:wght@300;400;500;600&display=swap');
 
   :root {
-    --bg-0: #0a0a0b;
-    --bg-1: #111113;
-    --bg-2: #18181c;
-    --bg-3: #202026;
-    --bg-4: #2a2a32;
-    --border: #2e2e38;
-    --border-hi: #3e3e4e;
-    --text-0: #f0f0f4;
-    --text-1: #b8b8c8;
-    --text-2: #7a7a8e;
-    --text-3: #4a4a5a;
-    --blue: #3b82f6;
-    --blue-hi: #60a5fa;
-    --blue-lo: #1d4ed8;
-    --blue-dim: #1e3a5f;
+    --bg-0: #0a0a0b; --bg-1: #111113; --bg-2: #18181c; --bg-3: #202026; --bg-4: #2a2a32;
+    --border: #2e2e38; --border-hi: #3e3e4e;
+    --text-0: #f0f0f4; --text-1: #b8b8c8; --text-2: #7a7a8e; --text-3: #4a4a5a;
+    --blue: #3b82f6; --blue-hi: #60a5fa; --blue-lo: #1d4ed8; --blue-dim: #1e3a5f;
     --blue-glow: rgba(59,130,246,0.15);
-    --green: #22c55e;
-    --red: #ef4444;
-    --red-dim: #3f1e1e;
-    --yellow: #f59e0b;
-    --radius: 6px;
-    --radius-lg: 10px;
-    --mono: 'JetBrains Mono', monospace;
-    --sans: 'DM Sans', sans-serif;
-    --transition: 150ms ease;
+    --green: #22c55e; --red: #ef4444; --red-dim: #3f1e1e;
+    --yellow: #f59e0b; --yellow-dim: #2d1f00;
+    --radius: 6px; --radius-lg: 10px;
+    --mono: 'JetBrains Mono', monospace; --sans: 'DM Sans', sans-serif;
+    --t: 150ms ease;
   }
-
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html, body { height: 100%; background: var(--bg-0); color: var(--text-0); font-family: var(--sans); font-size: 14px; line-height: 1.5; -webkit-font-smoothing: antialiased; }
 
-  html, body {
-    height: 100%;
-    background: var(--bg-0);
-    color: var(--text-0);
-    font-family: var(--sans);
-    font-size: 14px;
-    line-height: 1.5;
-    -webkit-font-smoothing: antialiased;
-  }
-
-  /* ── Layout ─────────────────────────────────────────────────────────── */
+  /* ── Layout ── */
   .app { display: flex; height: 100vh; overflow: hidden; }
-
-  .sidebar {
-    width: 220px;
-    flex-shrink: 0;
-    background: var(--bg-1);
-    border-right: 1px solid var(--border);
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .sidebar-logo {
-    padding: 20px 18px 16px;
-    border-bottom: 1px solid var(--border);
-  }
-  .sidebar-logo h1 {
-    font-family: var(--mono);
-    font-size: 12px;
-    font-weight: 600;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--blue-hi);
-  }
-  .sidebar-logo p {
-    font-size: 11px;
-    color: var(--text-3);
-    margin-top: 2px;
-    font-family: var(--mono);
-  }
-
-  .nav {
-    padding: 10px 8px;
-    flex: 1;
-    overflow-y: auto;
-  }
-
-  .nav-item {
-    display: flex;
-    align-items: center;
-    gap: 9px;
-    padding: 8px 10px;
-    border-radius: var(--radius);
-    cursor: pointer;
-    color: var(--text-2);
-    font-size: 13px;
-    font-weight: 400;
-    transition: all var(--transition);
-    border: 1px solid transparent;
-    user-select: none;
-  }
-  .nav-item svg { flex-shrink: 0; opacity: 0.7; }
+  .sidebar { width: 226px; flex-shrink: 0; background: var(--bg-1); border-right: 1px solid var(--border); display: flex; flex-direction: column; }
+  .sidebar-logo { padding: 20px 18px 16px; border-bottom: 1px solid var(--border); }
+  .sidebar-logo h1 { font-family: var(--mono); font-size: 12px; font-weight: 600; letter-spacing: .12em; text-transform: uppercase; color: var(--blue-hi); }
+  .sidebar-logo p  { font-size: 11px; color: var(--text-3); margin-top: 2px; font-family: var(--mono); }
+  .nav { padding: 10px 8px; flex: 1; overflow-y: auto; }
+  .nav-item { display: flex; align-items: center; gap: 9px; padding: 8px 10px; border-radius: var(--radius); cursor: pointer; color: var(--text-2); font-size: 13px; transition: all var(--t); border: 1px solid transparent; user-select: none; }
+  .nav-item svg { flex-shrink: 0; opacity: .7; }
   .nav-item:hover { background: var(--bg-3); color: var(--text-1); }
-  .nav-item.active {
-    background: var(--blue-dim);
-    color: var(--blue-hi);
-    border-color: rgba(59,130,246,0.3);
-  }
+  .nav-item.active { background: var(--blue-dim); color: var(--blue-hi); border-color: rgba(59,130,246,.3); }
   .nav-item.active svg { opacity: 1; }
-
-  .main {
-    flex: 1;
-    display: flex;
-    flex-direction: column;
-    overflow: hidden;
-  }
-
-  .topbar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 0 24px;
-    height: 52px;
-    border-bottom: 1px solid var(--border);
-    background: var(--bg-1);
-    flex-shrink: 0;
-  }
-  .topbar-title {
-    font-size: 14px;
-    font-weight: 500;
-    color: var(--text-0);
-  }
+  .main { flex: 1; display: flex; flex-direction: column; overflow: hidden; }
+  .topbar { display: flex; align-items: center; justify-content: space-between; padding: 0 24px; height: 52px; border-bottom: 1px solid var(--border); background: var(--bg-1); flex-shrink: 0; }
+  .topbar-title { font-size: 14px; font-weight: 500; }
   .topbar-sub { font-size: 12px; color: var(--text-3); margin-left: 10px; }
+  .content { flex: 1; overflow-y: auto; padding: 24px; }
 
-  .content {
-    flex: 1;
-    overflow-y: auto;
-    padding: 24px;
-  }
-
-  /* ── Panels / Panes ──────────────────────────────────────────────────── */
+  /* ── Panes ── */
   .pane { display: none; }
   .pane.active { display: block; }
 
-  /* ── Cards ───────────────────────────────────────────────────────────── */
-  .card {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 18px 20px;
-    margin-bottom: 12px;
-    transition: border-color var(--transition);
-  }
+  /* ── Cards ── */
+  .card { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 16px 18px; margin-bottom: 10px; transition: border-color var(--t); }
   .card:hover { border-color: var(--border-hi); }
-  .card-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 12px;
-  }
-  .card-title { font-size: 14px; font-weight: 500; color: var(--text-0); }
+  .card-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 12px; }
+  .card-title { font-size: 13px; font-weight: 500; }
   .card-sub { font-size: 12px; color: var(--text-2); margin-top: 3px; }
   .card-actions { display: flex; gap: 6px; flex-shrink: 0; }
 
-  .badge {
-    display: inline-flex;
-    align-items: center;
-    padding: 2px 7px;
-    border-radius: 4px;
-    font-size: 10px;
-    font-family: var(--mono);
-    font-weight: 500;
-    letter-spacing: 0.04em;
-    background: var(--bg-4);
-    color: var(--text-2);
-    border: 1px solid var(--border);
-    margin-top: 6px;
-    margin-right: 4px;
-  }
-  .badge.blue { background: var(--blue-dim); color: var(--blue-hi); border-color: rgba(59,130,246,0.3); }
+  .badge { display: inline-flex; align-items: center; padding: 2px 7px; border-radius: 4px; font-size: 10px; font-family: var(--mono); font-weight: 500; background: var(--bg-4); color: var(--text-2); border: 1px solid var(--border); margin: 4px 3px 0 0; }
+  .badge.blue { background: var(--blue-dim); color: var(--blue-hi); border-color: rgba(59,130,246,.3); }
   .badge.green { background: #14301f; color: #4ade80; border-color: #1e4d2e; }
+  .badge.yellow { background: var(--yellow-dim); color: var(--yellow); border-color: #4d3600; }
 
-  /* ── Buttons ─────────────────────────────────────────────────────────── */
-  .btn {
-    display: inline-flex;
-    align-items: center;
-    gap: 6px;
-    padding: 6px 12px;
-    border-radius: var(--radius);
-    border: 1px solid transparent;
-    font-family: var(--sans);
-    font-size: 13px;
-    font-weight: 500;
-    cursor: pointer;
-    transition: all var(--transition);
-    white-space: nowrap;
-    user-select: none;
-  }
-  .btn-primary {
-    background: var(--blue);
-    color: #fff;
-    border-color: var(--blue);
-  }
+  /* ── Buttons ── */
+  .btn { display: inline-flex; align-items: center; gap: 6px; padding: 6px 12px; border-radius: var(--radius); border: 1px solid transparent; font-family: var(--sans); font-size: 13px; font-weight: 500; cursor: pointer; transition: all var(--t); white-space: nowrap; user-select: none; }
+  .btn-primary { background: var(--blue); color: #fff; border-color: var(--blue); }
   .btn-primary:hover { background: var(--blue-hi); border-color: var(--blue-hi); }
-  .btn-ghost {
-    background: transparent;
-    color: var(--text-2);
-    border-color: var(--border);
-  }
+  .btn-ghost { background: transparent; color: var(--text-2); border-color: var(--border); }
   .btn-ghost:hover { background: var(--bg-3); color: var(--text-1); border-color: var(--border-hi); }
-  .btn-danger {
-    background: transparent;
-    color: var(--red);
-    border-color: var(--red-dim);
-  }
+  .btn-danger { background: transparent; color: var(--red); border-color: var(--red-dim); }
   .btn-danger:hover { background: var(--red-dim); }
   .btn-sm { padding: 4px 9px; font-size: 12px; }
-  .btn:disabled { opacity: 0.4; cursor: not-allowed; }
-  .btn svg { flex-shrink: 0; }
+  .btn:disabled { opacity: .4; cursor: not-allowed; }
 
-  /* ── Forms ───────────────────────────────────────────────────────────── */
-  .form-group { margin-bottom: 16px; }
-  .form-label {
-    display: block;
-    font-size: 12px;
-    font-weight: 500;
-    color: var(--text-1);
-    margin-bottom: 6px;
-    letter-spacing: 0.02em;
-  }
-  .form-hint { font-size: 11px; color: var(--text-3); margin-top: 4px; }
-  .form-input {
-    width: 100%;
-    padding: 8px 11px;
-    background: var(--bg-3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--text-0);
-    font-family: var(--sans);
-    font-size: 13px;
-    outline: none;
-    transition: border-color var(--transition), box-shadow var(--transition);
-  }
-  .form-input:focus {
-    border-color: var(--blue);
-    box-shadow: 0 0 0 3px var(--blue-glow);
-  }
+  /* ── Forms ── */
+  .form-group { margin-bottom: 14px; }
+  .form-label { display: block; font-size: 12px; font-weight: 500; color: var(--text-1); margin-bottom: 5px; letter-spacing: .02em; }
+  .form-hint { font-size: 11px; color: var(--text-3); margin-top: 3px; font-family: var(--mono); }
+  .form-input { width: 100%; padding: 7px 10px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius); color: var(--text-0); font-family: var(--sans); font-size: 13px; outline: none; transition: border-color var(--t), box-shadow var(--t); }
+  .form-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-glow); }
   .form-input::placeholder { color: var(--text-3); }
-  textarea.form-input { resize: vertical; min-height: 80px; font-family: var(--mono); font-size: 12px; }
   select.form-input { cursor: pointer; }
+  .form-row   { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
 
-  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
-  .form-row-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; }
+  /* ── Type selector + preview ── */
+  .type-select-row { display: flex; gap: 10px; align-items: center; }
+  .type-select-row select { flex: 1; }
+  .type-preview-btn { white-space: nowrap; }
 
-  /* ── Section order drag ──────────────────────────────────────────────── */
-  .section-list {
-    display: flex;
-    flex-direction: column;
-    gap: 6px;
-  }
-  .section-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 12px;
-    background: var(--bg-3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    cursor: grab;
-    user-select: none;
-    transition: all var(--transition);
-  }
+  .type-preview-panel { margin-top: 10px; border: 1px solid var(--border); border-radius: var(--radius-lg); overflow: hidden; }
+  .type-preview-tabs  { display: flex; border-bottom: 1px solid var(--border); background: var(--bg-3); }
+  .type-tab { padding: 7px 14px; font-size: 11px; font-weight: 600; letter-spacing: .05em; text-transform: uppercase; cursor: pointer; color: var(--text-3); border-bottom: 2px solid transparent; transition: all var(--t); user-select: none; }
+  .type-tab:hover { color: var(--text-1); }
+  .type-tab.active { color: var(--blue-hi); border-bottom-color: var(--blue); }
+  .type-preview-body { padding: 14px 16px; background: var(--bg-2); min-height: 130px; }
+
+  /* JSON pane */
+  .json-shape-desc { font-size: 12px; color: var(--text-1); margin-bottom: 10px; line-height: 1.5; }
+  .json-code-block { background: var(--bg-0); border: 1px solid var(--border); border-radius: var(--radius); padding: 11px 13px; font-family: var(--mono); font-size: 11px; color: #a5d6a7; line-height: 1.65; overflow-x: auto; white-space: pre; }
+  .json-key   { color: #90caf9; }
+  .json-str   { color: #a5d6a7; }
+  .json-num   { color: #ffcc80; }
+  .json-punct { color: var(--text-3); }
+
+  /* PDF preview pane */
+  .pdf-preview { background: #fff; border: 1px solid #d0d0d0; border-radius: 3px; padding: 16px 20px; font-family: 'Times New Roman', Times, serif; color: #111; max-width: 100%; box-shadow: 0 2px 8px rgba(0,0,0,.25); }
+  .pdf-sec-name { font-size: 9.5px; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: #111; padding-bottom: 3px; border-bottom: 0.5px solid #111; margin-bottom: 6px; }
+  .pdf-body    { font-size: 8.5px; line-height: 1.5; color: #111; }
+  .pdf-bold    { font-weight: 700; }
+  .pdf-italic  { font-style: italic; }
+  .pdf-right   { text-align: right; }
+  .pdf-row     { display: flex; justify-content: space-between; gap: 8px; }
+  .pdf-row-l   { flex: 1; }
+  .pdf-row-r   { flex-shrink: 0; font-style: italic; font-size: 8px; color: #444; }
+  .pdf-bullet  { padding-left: 12px; color: #111; margin-top: 1px; font-size: 8.5px; }
+  .pdf-bullet::before { content: '• '; }
+  .pdf-subhead { font-weight: 700; font-size: 8.5px; margin-top: 5px; margin-bottom: 2px; }
+  .pdf-cat     { font-size: 8.5px; margin-bottom: 2px; }
+  .pdf-url     { color: #1a5fb4; text-decoration: underline; font-size: 8.5px; }
+  .pdf-entry   { margin-bottom: 5px; }
+  .pdf-entry:last-child { margin-bottom: 0; }
+
+  /* ── Section drag list ── */
+  .section-list { display: flex; flex-direction: column; gap: 5px; }
+  .section-item { display: flex; align-items: center; gap: 9px; padding: 7px 11px; background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius); cursor: grab; user-select: none; transition: all var(--t); }
   .section-item:active { cursor: grabbing; }
-  .section-item.dragging {
-    opacity: 0.4;
-    border-color: var(--blue);
-  }
-  .section-item.drag-over {
-    border-color: var(--blue);
-    background: var(--blue-dim);
-  }
+  .section-item.dragging { opacity: .35; border-color: var(--blue); }
+  .section-item.drag-over { border-color: var(--blue); background: var(--blue-dim); }
   .section-item .drag-handle { color: var(--text-3); flex-shrink: 0; }
-  .section-item .section-name {
-    flex: 1;
-    font-size: 13px;
-    text-transform: capitalize;
-  }
-  .section-item .remove-section {
-    color: var(--text-3);
-    cursor: pointer;
-    padding: 2px;
-    border-radius: 3px;
-    transition: color var(--transition);
-  }
-  .section-item .remove-section:hover { color: var(--red); }
-
-  .add-section-row {
-    display: flex;
-    gap: 8px;
-    margin-top: 8px;
-  }
+  .section-item .sec-name { flex: 1; font-size: 12px; }
+  .section-item .sec-type { font-size: 10px; font-family: var(--mono); color: var(--text-3); margin-right: 4px; }
+  .section-item .remove-sec { color: var(--text-3); cursor: pointer; padding: 2px; border-radius: 3px; transition: color var(--t); }
+  .section-item .remove-sec:hover { color: var(--red); }
+  .add-section-row { display: flex; gap: 8px; margin-top: 8px; }
   .add-section-row select { flex: 1; }
 
-  /* ── Generate panel ──────────────────────────────────────────────────── */
-  .generate-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 16px;
-    margin-bottom: 20px;
-  }
-  .select-box {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 14px 16px;
-  }
-  .select-box h3 {
-    font-size: 12px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-2);
-    margin-bottom: 12px;
-  }
+  /* ── Style block ── */
+  .style-block { background: var(--bg-3); border: 1px solid var(--border); border-radius: var(--radius); padding: 14px; }
+  .style-block h4 { font-size: 10px; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); margin-bottom: 10px; font-weight: 600; }
+  .style-block + .style-block { margin-top: 10px; }
 
-  .job-checkbox-item {
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    padding: 8px 10px;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: background var(--transition);
-    border: 1px solid transparent;
-  }
-  .job-checkbox-item:hover { background: var(--bg-3); }
-  .job-checkbox-item.selected {
-    background: var(--blue-dim);
-    border-color: rgba(59,130,246,0.25);
-  }
-  .job-checkbox-item input[type=checkbox] { accent-color: var(--blue); width: 14px; height: 14px; cursor: pointer; }
-  .job-checkbox-item .job-info { flex: 1; min-width: 0; }
-  .job-checkbox-item .job-name { font-size: 13px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-  .job-checkbox-item .job-path { font-size: 11px; color: var(--text-3); font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
-
-  .template-radio-item {
-    display: flex;
-    align-items: flex-start;
-    gap: 10px;
-    padding: 10px 12px;
-    border-radius: var(--radius);
-    cursor: pointer;
-    transition: background var(--transition);
-    border: 1px solid transparent;
-    margin-bottom: 6px;
-  }
-  .template-radio-item:hover { background: var(--bg-3); }
-  .template-radio-item.selected {
-    background: var(--blue-dim);
-    border-color: rgba(59,130,246,0.3);
-  }
-  .template-radio-item input[type=radio] { accent-color: var(--blue); margin-top: 2px; cursor: pointer; }
-  .template-radio-item .tpl-name { font-size: 13px; font-weight: 500; }
-  .template-radio-item .tpl-desc { font-size: 11px; color: var(--text-2); margin-top: 2px; }
-
-  /* ── Output dir ──────────────────────────────────────────────────────── */
-  .output-row {
-    display: flex;
-    gap: 10px;
-    align-items: flex-end;
-    margin-bottom: 20px;
-  }
+  /* ── Generate panel ── */
+  .generate-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 18px; }
+  .select-box { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 14px 16px; }
+  .select-box h3 { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .08em; color: var(--text-2); margin-bottom: 10px; }
+  .job-check { display: flex; align-items: center; gap: 9px; padding: 7px 9px; border-radius: var(--radius); cursor: pointer; transition: background var(--t); border: 1px solid transparent; }
+  .job-check:hover { background: var(--bg-3); }
+  .job-check.selected { background: var(--blue-dim); border-color: rgba(59,130,246,.25); }
+  .job-check input[type=checkbox] { accent-color: var(--blue); width: 13px; height: 13px; cursor: pointer; }
+  .job-check .ji { flex: 1; min-width: 0; }
+  .job-check .ji-name { font-size: 12px; font-weight: 500; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .job-check .ji-path { font-size: 10px; color: var(--text-3); font-family: var(--mono); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+  .tpl-radio { display: flex; align-items: flex-start; gap: 9px; padding: 8px 10px; border-radius: var(--radius); cursor: pointer; transition: background var(--t); border: 1px solid transparent; margin-bottom: 5px; }
+  .tpl-radio:hover { background: var(--bg-3); }
+  .tpl-radio.selected { background: var(--blue-dim); border-color: rgba(59,130,246,.3); }
+  .tpl-radio input[type=radio] { accent-color: var(--blue); margin-top: 2px; cursor: pointer; }
+  .tpl-radio .tr-name { font-size: 12px; font-weight: 500; }
+  .tpl-radio .tr-desc { font-size: 11px; color: var(--text-2); margin-top: 1px; }
+  .output-row { display: flex; gap: 10px; align-items: flex-end; margin-bottom: 18px; }
   .output-row .form-group { flex: 1; margin: 0; }
 
-  /* ── Results log ─────────────────────────────────────────────────────── */
-  .log {
-    background: var(--bg-2);
-    border: 1px solid var(--border);
-    border-radius: var(--radius-lg);
-    padding: 14px 16px;
-    font-family: var(--mono);
-    font-size: 12px;
-    line-height: 1.7;
-    min-height: 80px;
-    max-height: 260px;
-    overflow-y: auto;
-  }
-  .log-entry { display: flex; align-items: flex-start; gap: 8px; margin-bottom: 4px; }
-  .log-entry .log-icon { flex-shrink: 0; margin-top: 2px; }
-  .log-ok { color: var(--green); }
-  .log-err { color: var(--red); }
+  /* ── Log ── */
+  .log { background: var(--bg-2); border: 1px solid var(--border); border-radius: var(--radius-lg); padding: 12px 14px; font-family: var(--mono); font-size: 12px; line-height: 1.7; min-height: 70px; max-height: 240px; overflow-y: auto; }
+  .le { display: flex; align-items: flex-start; gap: 7px; margin-bottom: 3px; }
+  .le-icon { flex-shrink: 0; margin-top: 1px; }
+  .log-ok   { color: var(--green); }
+  .log-err  { color: var(--red); }
   .log-info { color: var(--text-2); }
   .log-path { color: var(--blue-hi); }
 
-  /* ── Modal ───────────────────────────────────────────────────────────── */
-  .modal-backdrop {
-    display: none;
-    position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.7);
-    z-index: 100;
-    align-items: center;
-    justify-content: center;
-    backdrop-filter: blur(3px);
-  }
+  /* ── Modal ── */
+  .modal-backdrop { display: none; position: fixed; inset: 0; background: rgba(0,0,0,.72); z-index: 100; align-items: center; justify-content: center; backdrop-filter: blur(3px); }
   .modal-backdrop.open { display: flex; }
-  .modal {
-    background: var(--bg-2);
-    border: 1px solid var(--border-hi);
-    border-radius: var(--radius-lg);
-    width: 620px;
-    max-width: calc(100vw - 40px);
-    max-height: calc(100vh - 60px);
-    overflow-y: auto;
-    padding: 24px;
-    box-shadow: 0 20px 60px rgba(0,0,0,0.6);
-    animation: modalIn 180ms ease;
-  }
-  @keyframes modalIn {
-    from { opacity: 0; transform: translateY(-10px) scale(0.98); }
-    to   { opacity: 1; transform: none; }
-  }
-  .modal-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 22px;
-  }
-  .modal-header h2 { font-size: 16px; font-weight: 600; }
-  .modal-close { cursor: pointer; color: var(--text-3); transition: color var(--transition); padding: 4px; }
+  .modal { background: var(--bg-2); border: 1px solid var(--border-hi); border-radius: var(--radius-lg); width: 560px; max-width: calc(100vw - 40px); max-height: calc(100vh - 60px); overflow-y: auto; padding: 22px; box-shadow: 0 20px 60px rgba(0,0,0,.6); animation: mIn 180ms ease; }
+  .modal.wide { width: 700px; }
+  @keyframes mIn { from { opacity:0; transform: translateY(-8px) scale(.98); } to { opacity:1; transform: none; } }
+  .modal-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .modal-header h2 { font-size: 15px; font-weight: 600; }
+  .modal-close { cursor: pointer; color: var(--text-3); transition: color var(--t); padding: 4px; }
   .modal-close:hover { color: var(--text-0); }
-  .modal-footer {
-    display: flex;
-    justify-content: flex-end;
-    gap: 10px;
-    margin-top: 22px;
-    padding-top: 18px;
-    border-top: 1px solid var(--border);
-  }
+  .modal-footer { display: flex; justify-content: flex-end; gap: 9px; margin-top: 20px; padding-top: 16px; border-top: 1px solid var(--border); }
 
-  /* ── Style editor within template modal ─────────────────────────────── */
-  .style-section {
-    background: var(--bg-3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    padding: 14px;
-    margin-top: 8px;
-  }
-  .style-section h4 {
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    color: var(--text-3);
-    margin-bottom: 12px;
-    font-weight: 600;
-  }
-
-  /* ── Empty state ─────────────────────────────────────────────────────── */
-  .empty-state {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    padding: 48px 24px;
-    text-align: center;
-    color: var(--text-3);
-  }
-  .empty-state svg { margin-bottom: 14px; opacity: 0.3; }
+  /* ── Misc ── */
+  .actions-bar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 18px; }
+  .sec-label { font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: .1em; color: var(--text-3); margin-bottom: 10px; display: flex; align-items: center; gap: 10px; }
+  .sec-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .empty-state { display: flex; flex-direction: column; align-items: center; padding: 40px 24px; text-align: center; color: var(--text-3); }
+  .empty-state svg { margin-bottom: 12px; opacity: .3; }
   .empty-state p { font-size: 13px; }
-
-  /* ── Divider / Section label ─────────────────────────────────────────── */
-  .section-label {
-    font-size: 11px;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.1em;
-    color: var(--text-3);
-    margin-bottom: 12px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .actions-bar {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 20px;
-  }
-
-  /* ── Scrollbar ───────────────────────────────────────────────────────── */
-  ::-webkit-scrollbar { width: 6px; height: 6px; }
+  #toast { position: fixed; bottom: 20px; right: 20px; padding: 9px 14px; border-radius: var(--radius); font-size: 13px; font-weight: 500; z-index: 999; transition: all 200ms ease; opacity: 0; transform: translateY(8px); pointer-events: none; }
+  #toast.show { opacity: 1; transform: none; }
+  #toast.ok  { background: #14301f; color: #4ade80; border: 1px solid #1e4d2e; }
+  #toast.err { background: var(--red-dim); color: #fca5a5; border: 1px solid #6b2525; }
+  @keyframes spin { to { transform: rotate(360deg); } }
+  .spinner { width: 13px; height: 13px; border: 2px solid rgba(255,255,255,.2); border-top-color: #fff; border-radius: 50%; animation: spin 600ms linear infinite; flex-shrink: 0; }
+  ::-webkit-scrollbar { width: 5px; height: 5px; }
   ::-webkit-scrollbar-track { background: transparent; }
   ::-webkit-scrollbar-thumb { background: var(--bg-4); border-radius: 3px; }
   ::-webkit-scrollbar-thumb:hover { background: var(--border-hi); }
 
-  /* ── Toast ───────────────────────────────────────────────────────────── */
-  #toast {
-    position: fixed;
-    bottom: 20px;
-    right: 20px;
-    padding: 10px 16px;
-    border-radius: var(--radius);
-    font-size: 13px;
-    font-weight: 500;
-    z-index: 999;
-    transition: all 200ms ease;
-    opacity: 0;
-    transform: translateY(8px);
-    pointer-events: none;
-  }
-  #toast.show { opacity: 1; transform: none; }
-  #toast.ok { background: #14301f; color: #4ade80; border: 1px solid #1e4d2e; }
-  #toast.err { background: var(--red-dim); color: #fca5a5; border: 1px solid #6b2525; }
-
-  /* ── Range input ─────────────────────────────────────────────────────── */
-  input[type=range] { accent-color: var(--blue); width: 100%; }
-  .range-row { display: flex; align-items: center; gap: 10px; }
-  .range-row input { flex: 1; }
-  .range-val { font-family: var(--mono); font-size: 12px; color: var(--blue-hi); width: 36px; text-align: right; flex-shrink: 0; }
-
-  /* ── Spinner ─────────────────────────────────────────────────────────── */
-  @keyframes spin { to { transform: rotate(360deg); } }
-  .spinner {
-    width: 14px; height: 14px;
-    border: 2px solid rgba(255,255,255,0.2);
-    border-top-color: #fff;
-    border-radius: 50%;
-    animation: spin 600ms linear infinite;
-    flex-shrink: 0;
-  }
-
-  .number-input {
-    width: 80px;
-    padding: 6px 8px;
-    background: var(--bg-3);
-    border: 1px solid var(--border);
-    border-radius: var(--radius);
-    color: var(--text-0);
-    font-family: var(--mono);
-    font-size: 12px;
-    outline: none;
-    text-align: right;
-  }
-  .number-input:focus { border-color: var(--blue); box-shadow: 0 0 0 3px var(--blue-glow); }
+  /* section type pill colours */
+  .stype-text         { background:#1a2a1a; color:#86efac; border-color:#244d24; }
+  .stype-entries      { background:#1a1f3a; color:#93c5fd; border-color:#243566; }
+  .stype-skills       { background:#2a1f00; color:#fcd34d; border-color:#4d3800; }
+  .stype-bullets      { background:#2a1a1a; color:#fca5a5; border-color:#4d2424; }
+  .stype-url_list     { background:#1a2a2a; color:#67e8f9; border-color:#1e4a4a; }
+  .stype-grouped_list { background:#2a1a2a; color:#d8b4fe; border-color:#4d2464; }
 </style>
 </head>
 <body>
-
 <div class="app">
-  <!-- Sidebar -->
   <aside class="sidebar">
     <div class="sidebar-logo">
       <h1>Resume Builder</h1>
       <p>local · port 8030</p>
     </div>
     <nav class="nav">
-      <div class="nav-item active" data-pane="generate" onclick="switchPane('generate', this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 13 9 20 9"/><polygon points="22 13 13 2 2 13 2 22 22 22"/><line x1="7" y1="18" x2="17" y2="18"/></svg>
+      <div class="nav-item active" onclick="switchPane('generate',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="13 2 13 9 20 9"/><polygon points="22 13 13 2 2 13 2 22 22 22"/></svg>
         Generate
       </div>
-      <div class="nav-item" data-pane="jobs" onclick="switchPane('jobs', this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
+      <div class="nav-item" onclick="switchPane('jobs',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
         Input Files
       </div>
-      <div class="nav-item" data-pane="templates" onclick="switchPane('templates', this)">
-        <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
+      <div class="nav-item" onclick="switchPane('sections',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 6h16M4 12h10M4 18h14"/></svg>
+        Sections
+      </div>
+      <div class="nav-item" onclick="switchPane('templates',this)">
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
         Templates
       </div>
     </nav>
   </aside>
 
-  <!-- Main -->
   <div class="main">
     <div class="topbar">
       <div style="display:flex;align-items:center;gap:8px">
         <span class="topbar-title" id="topbar-title">Generate PDFs</span>
-        <span class="topbar-sub" id="topbar-sub"></span>
+        <span class="topbar-sub"   id="topbar-sub"></span>
       </div>
     </div>
-
     <div class="content">
 
-      <!-- ── Generate Pane ────────────────────────────────────────────── -->
+      <!-- Generate -->
       <div class="pane active" id="pane-generate">
-
         <div class="generate-grid">
           <div class="select-box">
             <h3>Input Files</h3>
-            <div id="gen-jobs-list">
-              <div class="empty-state" style="padding:20px">
-                <p>No input files yet.<br>Add them in "Input Files".</p>
-              </div>
-            </div>
+            <div id="gen-jobs-list"></div>
           </div>
-
           <div class="select-box">
             <h3>Template</h3>
-            <div id="gen-templates-list">
-              <div class="empty-state" style="padding:20px"><p>No templates found.</p></div>
-            </div>
+            <div id="gen-tpl-list"></div>
           </div>
         </div>
-
         <div class="output-row">
           <div class="form-group">
             <label class="form-label">Output Directory</label>
-            <input type="text" id="output-dir" class="form-input" placeholder="e.g. /Users/you/Documents/Resumes" />
-            <div class="form-hint">Directory will be created if it doesn't exist.</div>
+            <input type="text" id="output-dir" class="form-input" placeholder="/Users/you/Documents/Resumes" />
+            <div class="form-hint">Will be created if it does not exist.</div>
           </div>
           <button class="btn btn-primary" id="gen-btn" onclick="runGenerate()">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 13 9 20 9"/><polygon points="22 13 13 2 2 13 2 22 22 22"/></svg>
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 13 9 20 9"/><polygon points="22 13 13 2 2 13 2 22 22 22"/></svg>
             Generate
           </button>
         </div>
-
-        <div class="section-label">Output Log</div>
+        <div class="sec-label">Output Log</div>
         <div class="log" id="gen-log">
-          <div class="log-entry log-info"><span>Ready. Select files and a template, then click Generate.</span></div>
+          <div class="le log-info"><span>Ready. Select files and a template, then click Generate.</span></div>
         </div>
       </div>
 
-      <!-- ── Input Files Pane ─────────────────────────────────────────── -->
+      <!-- Input Files -->
       <div class="pane" id="pane-jobs">
         <div class="actions-bar">
-          <div class="section-label" style="margin:0;flex:1">Input Files</div>
+          <div class="sec-label" style="margin:0;flex:1">Input Files</div>
           <button class="btn btn-primary btn-sm" onclick="openJobModal()">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             Add File
           </button>
         </div>
         <div id="jobs-list"></div>
       </div>
 
-      <!-- ── Templates Pane ──────────────────────────────────────────── -->
+      <!-- Sections -->
+      <div class="pane" id="pane-sections">
+        <div class="actions-bar">
+          <div class="sec-label" style="margin:0;flex:1">Section Definitions</div>
+          <button class="btn btn-primary btn-sm" onclick="openSecModal()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+            New Section
+          </button>
+        </div>
+        <div id="sections-list"></div>
+      </div>
+
+      <!-- Templates -->
       <div class="pane" id="pane-templates">
         <div class="actions-bar">
-          <div class="section-label" style="margin:0;flex:1">Document Templates</div>
-          <button class="btn btn-primary btn-sm" onclick="openTemplateModal()">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+          <div class="sec-label" style="margin:0;flex:1">Document Templates</div>
+          <button class="btn btn-primary btn-sm" onclick="openTplModal()">
+            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
             New Template
           </button>
         </div>
@@ -653,64 +309,97 @@
   </div>
 </div>
 
-<!-- ── Job Modal ──────────────────────────────────────────────────────────── -->
+<!-- ── Job modal ── -->
 <div class="modal-backdrop" id="job-modal">
   <div class="modal">
     <div class="modal-header">
       <h2 id="job-modal-title">Add Input File</h2>
-      <span class="modal-close" onclick="closeJobModal()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </span>
+      <span class="modal-close" onclick="closeModal('job-modal')">✕</span>
     </div>
-
-    <input type="hidden" id="job-id" value="">
-
+    <input type="hidden" id="job-id">
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Display Name</label>
-        <input type="text" id="job-name" class="form-input" placeholder="John Doe Resume" />
+        <input type="text" id="job-name" class="form-input" placeholder="John Doe Resume">
       </div>
       <div class="form-group">
         <label class="form-label">Output Filename <span style="color:var(--text-3);font-weight:400">(optional)</span></label>
-        <input type="text" id="job-output-name" class="form-input" placeholder="john_doe_resume.pdf" />
+        <input type="text" id="job-output-name" class="form-input" placeholder="john_doe.pdf">
         <div class="form-hint">Leave blank to use JSON filename.</div>
       </div>
     </div>
-
     <div class="form-group">
       <label class="form-label">JSON File Path</label>
-      <input type="text" id="job-json-path" class="form-input" placeholder="/path/to/resume.json" />
-      <div class="form-hint">Absolute path to your resume JSON file.</div>
+      <input type="text" id="job-json-path" class="form-input" placeholder="/path/to/resume.json">
     </div>
-
     <div class="form-group">
       <label class="form-label">Notes <span style="color:var(--text-3);font-weight:400">(optional)</span></label>
-      <input type="text" id="job-notes" class="form-input" placeholder="e.g. Software eng version, updated 2024" />
+      <input type="text" id="job-notes" class="form-input" placeholder="e.g. Software eng version, 2024">
     </div>
-
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeJobModal()">Cancel</button>
+      <button class="btn btn-ghost" onclick="closeModal('job-modal')">Cancel</button>
       <button class="btn btn-primary" onclick="saveJob()">Save</button>
     </div>
   </div>
 </div>
 
-<!-- ── Template Modal ─────────────────────────────────────────────────────── -->
+<!-- ── Section definition modal ── -->
+<div class="modal-backdrop" id="sec-modal">
+  <div class="modal wide">
+    <div class="modal-header">
+      <h2 id="sec-modal-title">New Section</h2>
+      <span class="modal-close" onclick="closeModal('sec-modal')">✕</span>
+    </div>
+    <input type="hidden" id="sec-id">
+    <div class="form-row">
+      <div class="form-group">
+        <label class="form-label">Display Name</label>
+        <input type="text" id="sec-display-name" class="form-input" placeholder="Publications">
+        <div class="form-hint">Shown as the section heading in the PDF.</div>
+      </div>
+      <div class="form-group">
+        <label class="form-label">JSON Key</label>
+        <input type="text" id="sec-json-key" class="form-input" placeholder="publications">
+        <div class="form-hint">Top-level key in your resume JSON file.</div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="form-label">Section Type</label>
+      <div class="type-select-row">
+        <select id="sec-type-select" class="form-input" onchange="onTypeSelectChange(this.value)"></select>
+        <button class="btn btn-ghost btn-sm type-preview-btn" onclick="toggleTypePreview()">
+          <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="3"/><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/></svg>
+          Preview
+        </button>
+      </div>
+      <div class="form-hint" id="sec-type-desc" style="margin-top:5px"></div>
+      <div class="type-preview-panel" id="type-preview-panel" style="display:none;margin-top:10px">
+        <div class="type-preview-tabs">
+          <div class="type-tab active" onclick="switchTypeTab('json',this)">JSON Shape</div>
+          <div class="type-tab" onclick="switchTypeTab('pdf',this)">PDF Preview</div>
+        </div>
+        <div class="type-preview-body" id="type-preview-body"></div>
+      </div>
+    </div>
+    <div class="modal-footer">
+      <button class="btn btn-ghost" onclick="closeModal('sec-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveSecDef()">Save Section</button>
+    </div>
+  </div>
+</div>
+
+<!-- ── Template modal ── -->
 <div class="modal-backdrop" id="tpl-modal">
-  <div class="modal" style="width:680px">
+  <div class="modal wide">
     <div class="modal-header">
       <h2 id="tpl-modal-title">New Template</h2>
-      <span class="modal-close" onclick="closeTplModal()">
-        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </span>
+      <span class="modal-close" onclick="closeModal('tpl-modal')">✕</span>
     </div>
-
-    <input type="hidden" id="tpl-id" value="">
-
+    <input type="hidden" id="tpl-id">
     <div class="form-row">
       <div class="form-group">
         <label class="form-label">Template Name</label>
-        <input type="text" id="tpl-name" class="form-input" placeholder="Standard Resume" />
+        <input type="text" id="tpl-name" class="form-input" placeholder="Standard Resume">
       </div>
       <div class="form-group">
         <label class="form-label">Page Size</label>
@@ -720,192 +409,163 @@
         </select>
       </div>
     </div>
-
     <div class="form-group">
       <label class="form-label">Description</label>
-      <input type="text" id="tpl-description" class="form-input" placeholder="Brief description of this template" />
+      <input type="text" id="tpl-description" class="form-input" placeholder="Brief description of this template">
     </div>
 
-    <!-- Section Order -->
+    <!-- Section order -->
     <div class="form-group">
-      <label class="form-label">Section Order <span style="color:var(--text-3);font-weight:400">(drag to reorder)</span></label>
-      <div class="section-list" id="tpl-sections"></div>
+      <label class="form-label">Sections <span style="color:var(--text-3);font-weight:400">(drag to reorder)</span></label>
+      <div class="section-list" id="tpl-sec-list"></div>
       <div class="add-section-row">
-        <select id="add-section-select" class="form-input">
-          <option value="">Add section…</option>
-        </select>
-        <button class="btn btn-ghost btn-sm" onclick="addSection()">Add</button>
+        <select id="tpl-add-sec-sel" class="form-input"><option value="">Add section…</option></select>
+        <button class="btn btn-ghost btn-sm" onclick="tplAddSection()">Add</button>
       </div>
     </div>
 
     <!-- Style -->
     <div class="form-group">
-      <label class="form-label">Typography & Style</label>
-      <div class="style-section">
-        <h4>Font Family</h4>
+      <label class="form-label">Typography &amp; Style</label>
+      <div class="style-block">
+        <h4>Font</h4>
         <div class="form-row">
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Base Font</label>
-            <select id="style-font" class="form-input" onchange="syncFontVariants()">
+          <div class="form-group" style="margin:0">
+            <label class="form-label">Font Family</label>
+            <select id="s-font" class="form-input" onchange="syncFont()">
               <option value="Times-Roman">Times (Serif)</option>
               <option value="Helvetica">Helvetica (Sans)</option>
               <option value="Courier">Courier (Mono)</option>
             </select>
           </div>
         </div>
-
-        <h4 style="margin-top:14px">Font Sizes (pt)</h4>
+      </div>
+      <div class="style-block">
+        <h4>Font Sizes (pt)</h4>
         <div class="form-row-3">
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Name</label>
-            <input type="number" id="style-size-name" class="form-input number-input" value="22" min="12" max="36" style="width:100%"/>
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Section</label>
-            <input type="number" id="style-size-section" class="form-input number-input" value="10" min="7" max="16" style="width:100%"/>
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Body</label>
-            <input type="number" id="style-size-body" class="form-input number-input" value="9" min="7" max="14" style="width:100%"/>
-          </div>
+          <div class="form-group" style="margin:0"><label class="form-label">Name</label><input type="number" id="s-sz-name"    class="form-input" value="22" min="12" max="36"></div>
+          <div class="form-group" style="margin:0"><label class="form-label">Section</label><input type="number" id="s-sz-section" class="form-input" value="10" min="7"  max="16"></div>
+          <div class="form-group" style="margin:0"><label class="form-label">Body</label><input type="number" id="s-sz-body"    class="form-input" value="9"  min="7"  max="14"></div>
         </div>
-
-        <h4 style="margin-top:14px">Margins (inches)</h4>
+      </div>
+      <div class="style-block">
+        <h4>Margins (inches)</h4>
         <div class="form-row">
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Top / Bottom</label>
-            <input type="number" id="style-margin-v" class="form-input number-input" value="0.65" min="0.3" max="2" step="0.05" style="width:100%"/>
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Left / Right</label>
-            <input type="number" id="style-margin-h" class="form-input number-input" value="0.75" min="0.3" max="2" step="0.05" style="width:100%"/>
-          </div>
+          <div class="form-group" style="margin:0"><label class="form-label">Top / Bottom</label><input type="number" id="s-mg-v" class="form-input" value="0.65" min="0.3" max="2" step="0.05"></div>
+          <div class="form-group" style="margin:0"><label class="form-label">Left / Right</label><input type="number" id="s-mg-h" class="form-input" value="0.75" min="0.3" max="2" step="0.05"></div>
         </div>
-
-        <h4 style="margin-top:14px">Spacing (pt)</h4>
+      </div>
+      <div class="style-block">
+        <h4>Spacing &amp; Details</h4>
         <div class="form-row">
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Between Sections</label>
-            <input type="number" id="style-space-between" class="form-input number-input" value="6" min="0" max="20" style="width:100%"/>
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">After Entry</label>
-            <input type="number" id="style-space-entry" class="form-input number-input" value="5" min="0" max="20" style="width:100%"/>
-          </div>
+          <div class="form-group" style="margin:0"><label class="form-label">Between Sections (pt)</label><input type="number" id="s-sp-between" class="form-input" value="6" min="0" max="20"></div>
+          <div class="form-group" style="margin:0"><label class="form-label">After Entry (pt)</label><input type="number" id="s-sp-entry" class="form-input" value="5" min="0" max="20"></div>
         </div>
-
-        <h4 style="margin-top:14px">Other</h4>
-        <div class="form-row">
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Bullet Character</label>
-            <input type="text" id="style-bullet-char" class="form-input" value="•" maxlength="3" style="width:70px"/>
-          </div>
-          <div class="form-group" style="margin-bottom:0">
-            <label class="form-label">Rule Thickness (pt)</label>
-            <input type="number" id="style-rule-thickness" class="form-input number-input" value="0.6" min="0.2" max="3" step="0.1" style="width:100%"/>
-          </div>
+        <div class="form-row" style="margin-top:10px">
+          <div class="form-group" style="margin:0"><label class="form-label">Bullet Character</label><input type="text" id="s-bullet-char" class="form-input" value="•" maxlength="3"></div>
+          <div class="form-group" style="margin:0"><label class="form-label">Rule Thickness (pt)</label><input type="number" id="s-rule" class="form-input" value="0.6" min="0.2" max="3" step="0.1"></div>
         </div>
       </div>
     </div>
 
     <div class="modal-footer">
-      <button class="btn btn-ghost" onclick="closeTplModal()">Cancel</button>
-      <button class="btn btn-primary" onclick="saveTemplate()">Save Template</button>
+      <button class="btn btn-ghost" onclick="closeModal('tpl-modal')">Cancel</button>
+      <button class="btn btn-primary" onclick="saveTpl()">Save Template</button>
     </div>
   </div>
 </div>
 
-<!-- Toast -->
 <div id="toast"></div>
 
 <script>
 // ── State ────────────────────────────────────────────────────────────────────
-let jobs = [];
-let templates = [];
-let meta = { available_sections: [], available_fonts: [] };
-let selectedJobIds = new Set();
-let selectedTemplateId = null;
-let currentSections = [];
-let dragSrcIndex = null;
+let jobs = [], templates = [], sectionDefs = [], sectionTypes = {};
+let selectedJobIds = new Set(), selectedTplId = null;
+let curTplSections = []; // list of sec_ids for current template edit
+let curSecType = 'text'; // selected type in sec modal
+let curTypeTab = 'json'; // 'json' or 'pdf'
+let typePreviewOpen = false;
+let dragSrcIdx = null;
 
 const FONT_VARIANTS = {
-  'Times-Roman': { bold: 'Times-Bold', italic: 'Times-Italic' },
+  'Times-Roman': { bold: 'Times-Bold',     italic: 'Times-Italic' },
   'Helvetica':   { bold: 'Helvetica-Bold', italic: 'Helvetica-Oblique' },
-  'Courier':     { bold: 'Courier-Bold', italic: 'Courier-Oblique' },
+  'Courier':     { bold: 'Courier-Bold',   italic: 'Courier-Oblique' },
+};
+
+const PANE_META = {
+  generate:  ['Generate PDFs', ''],
+  jobs:      ['Input Files', 'JSON files to convert'],
+  sections:  ['Sections', 'reusable section definitions'],
+  templates: ['Document Templates', 'format & section ordering'],
 };
 
 // ── Boot ─────────────────────────────────────────────────────────────────────
 async function boot() {
   try {
-    const [j, t, m] = await Promise.all([
-      api('/api/jobs'), api('/api/templates'), api('/api/meta')
+    const [j, t, sd, m] = await Promise.all([
+      api('/api/jobs'), api('/api/templates'),
+      api('/api/section_defs'), api('/api/meta')
     ]);
-    jobs = j;
-    templates = t;
-    meta = m;
+    jobs = j; templates = t; sectionDefs = sd; sectionTypes = m.section_types || {};
     renderAll();
-  } catch(e) {
-    showToast('Failed to load data: ' + e.message, 'err');
-  }
+  } catch(e) { toast('Failed to load: ' + e.message, 'err'); }
 }
 
 function renderAll() {
-  renderJobs();
-  renderTemplates();
-  renderGeneratePanel();
+  renderJobs(); renderSectionDefs(); renderTemplates(); renderGenerate();
 }
 
-// ── API helper ───────────────────────────────────────────────────────────────
-async function api(url, method = 'GET', body = null) {
-  const opts = { method, headers: { 'Content-Type': 'application/json' } };
+// ── API ───────────────────────────────────────────────────────────────────────
+async function api(url, method='GET', body=null) {
+  const opts = { method, headers: {'Content-Type':'application/json'} };
   if (body) opts.body = JSON.stringify(body);
   const r = await fetch(url, opts);
-  if (!r.ok) { const e = await r.json(); throw new Error(e.error || r.statusText); }
+  if (!r.ok) { const e = await r.json().catch(()=>({})); throw new Error(e.error || r.statusText); }
   return r.json();
 }
 
-// ── Navigation ───────────────────────────────────────────────────────────────
-const PANE_TITLES = {
-  generate: ['Generate PDFs', ''],
-  jobs: ['Input Files', 'JSON files to convert'],
-  templates: ['Document Templates', 'formats & section ordering'],
-};
+// ── Navigation ────────────────────────────────────────────────────────────────
 function switchPane(name, el) {
   document.querySelectorAll('.pane').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
   document.getElementById('pane-' + name).classList.add('active');
   el.classList.add('active');
-  const [title, sub] = PANE_TITLES[name];
+  const [title, sub] = PANE_META[name];
   document.getElementById('topbar-title').textContent = title;
   document.getElementById('topbar-sub').textContent = sub;
 }
 
-// ── Toast ────────────────────────────────────────────────────────────────────
-let toastTimer;
-function showToast(msg, type = 'ok') {
+// ── Toast ─────────────────────────────────────────────────────────────────────
+let _tt;
+function toast(msg, type='ok') {
   const t = document.getElementById('toast');
-  t.textContent = msg;
-  t.className = 'show ' + type;
-  clearTimeout(toastTimer);
-  toastTimer = setTimeout(() => { t.className = ''; }, 3000);
+  t.textContent = msg; t.className = 'show ' + type;
+  clearTimeout(_tt); _tt = setTimeout(() => t.className = '', 3000);
 }
 
-// ── Jobs render ──────────────────────────────────────────────────────────────
+// ── Helpers ───────────────────────────────────────────────────────────────────
+function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
+function cap(s) { return s ? s.charAt(0).toUpperCase() + s.slice(1) : ''; }
+function closeModal(id) { document.getElementById(id).classList.remove('open'); }
+function secById(id) { return sectionDefs.find(s=>s.id===id); }
+function typeLabel(t) { return sectionTypes[t]?.label || cap(t); }
+
+function typeBadge(stype) {
+  return `<span class="badge stype-${esc(stype)}">${esc(typeLabel(stype))}</span>`;
+}
+
+// ── Input Files ───────────────────────────────────────────────────────────────
 function renderJobs() {
   const el = document.getElementById('jobs-list');
-  if (!jobs.length) {
-    el.innerHTML = `<div class="empty-state">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="2" y="3" width="20" height="14" rx="2"/><path d="M8 21h8M12 17v4"/></svg>
-      <p>No input files yet. Click "Add File" to get started.</p></div>`;
-    return;
-  }
+  if (!jobs.length) { el.innerHTML = emptyState('No input files yet. Click "Add File" to get started.'); return; }
   el.innerHTML = jobs.map(j => `
     <div class="card">
       <div class="card-header">
         <div>
-          <div class="card-title">${esc(j.name || 'Unnamed')}</div>
-          <div class="card-sub" style="font-family:var(--mono);font-size:11px">${esc(j.json_path || 'No path set')}</div>
-          ${j.notes ? `<div class="card-sub" style="margin-top:4px">${esc(j.notes)}</div>` : ''}
+          <div class="card-title">${esc(j.name||'Unnamed')}</div>
+          <div class="card-sub" style="font-family:var(--mono);font-size:11px">${esc(j.json_path||'No path set')}</div>
+          ${j.notes ? `<div class="card-sub" style="margin-top:3px">${esc(j.notes)}</div>` : ''}
           ${j.output_name ? `<span class="badge">→ ${esc(j.output_name)}</span>` : ''}
         </div>
         <div class="card-actions">
@@ -916,339 +576,498 @@ function renderJobs() {
     </div>`).join('');
 }
 
-// ── Templates render ─────────────────────────────────────────────────────────
+function openJobModal(id=null) {
+  document.getElementById('job-id').value = id||'';
+  document.getElementById('job-modal-title').textContent = id ? 'Edit Input File' : 'Add Input File';
+  const j = id ? jobs.find(x=>x.id===id) : null;
+  document.getElementById('job-name').value        = j?.name||'';
+  document.getElementById('job-json-path').value   = j?.json_path||'';
+  document.getElementById('job-output-name').value = j?.output_name||'';
+  document.getElementById('job-notes').value       = j?.notes||'';
+  document.getElementById('job-modal').classList.add('open');
+}
+
+async function saveJob() {
+  const id   = document.getElementById('job-id').value;
+  const body = {
+    name:        document.getElementById('job-name').value.trim(),
+    json_path:   document.getElementById('job-json-path').value.trim(),
+    output_name: document.getElementById('job-output-name').value.trim(),
+    notes:       document.getElementById('job-notes').value.trim(),
+  };
+  if (!body.name)      { toast('Name required.', 'err'); return; }
+  if (!body.json_path) { toast('JSON path required.', 'err'); return; }
+  try {
+    if (id) { const u = await api('/api/jobs/'+id,'PUT',body); jobs = jobs.map(j=>j.id===id?u:j); }
+    else    { const c = await api('/api/jobs','POST',body); jobs.push(c); }
+    closeModal('job-modal'); renderAll(); toast(id?'File updated.':'File added.');
+  } catch(e) { toast(e.message,'err'); }
+}
+
+async function deleteJob(id) {
+  if (!confirm('Delete this input file?')) return;
+  await api('/api/jobs/'+id,'DELETE');
+  jobs = jobs.filter(j=>j.id!==id); selectedJobIds.delete(id);
+  renderAll(); toast('File deleted.');
+}
+
+// ── Section definitions ───────────────────────────────────────────────────────
+function renderSectionDefs() {
+  const el = document.getElementById('sections-list');
+  if (!sectionDefs.length) { el.innerHTML = emptyState('No sections yet. Click "New Section" to create one.'); return; }
+  el.innerHTML = sectionDefs.map(sd => `
+    <div class="card">
+      <div class="card-header">
+        <div>
+          <div class="card-title">${esc(sd.display_name)}</div>
+          <div style="margin-top:4px">
+            <span class="badge" style="font-family:var(--mono)">${esc(sd.json_key)}</span>
+            ${typeBadge(sd.section_type)}
+          </div>
+          ${sectionTypes[sd.section_type] ? `<div class="card-sub" style="margin-top:5px;font-size:11px">${esc(sectionTypes[sd.section_type].description)}</div>` : ''}
+        </div>
+        <div class="card-actions">
+          <button class="btn btn-ghost btn-sm" onclick="openSecModal('${sd.id}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteSecDef('${sd.id}')">Delete</button>
+        </div>
+      </div>
+    </div>`).join('');
+}
+
+function openSecModal(id=null) {
+  document.getElementById('sec-id').value = id||'';
+  document.getElementById('sec-modal-title').textContent = id ? 'Edit Section' : 'New Section';
+  const sd = id ? sectionDefs.find(x=>x.id===id) : null;
+  document.getElementById('sec-display-name').value = sd?.display_name||'';
+  document.getElementById('sec-json-key').value     = sd?.json_key||'';
+  curSecType = sd?.section_type || 'text';
+  curTypeTab = 'json';
+  typePreviewOpen = false;
+  // Hide preview panel on open
+  document.getElementById('type-preview-panel').style.display = 'none';
+  renderTypeSelect();
+  document.getElementById('sec-modal').classList.add('open');
+}
+
+function renderTypeSelect() {
+  const sel = document.getElementById('sec-type-select');
+  sel.innerHTML = Object.entries(sectionTypes).map(([key, info]) =>
+    `<option value="${esc(key)}" ${curSecType===key?'selected':''}>${esc(info.label)}</option>`
+  ).join('');
+  updateTypeDesc();
+  if (typePreviewOpen) renderTypePreviewBody();
+}
+
+function onTypeSelectChange(key) {
+  curSecType = key;
+  updateTypeDesc();
+  if (typePreviewOpen) renderTypePreviewBody();
+}
+
+function updateTypeDesc() {
+  const info = sectionTypes[curSecType];
+  document.getElementById('sec-type-desc').textContent = info?.description || '';
+}
+
+function toggleTypePreview() {
+  typePreviewOpen = !typePreviewOpen;
+  document.getElementById('type-preview-panel').style.display = typePreviewOpen ? '' : 'none';
+  if (typePreviewOpen) { curTypeTab = 'json'; setActiveTypeTab(); renderTypePreviewBody(); }
+}
+
+function switchTypeTab(tab, el) {
+  curTypeTab = tab;
+  setActiveTypeTab();
+  renderTypePreviewBody();
+}
+
+function setActiveTypeTab() {
+  document.querySelectorAll('.type-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.type-tab').forEach(t => {
+    if ((t.textContent.trim().toLowerCase().startsWith('json') && curTypeTab==='json') ||
+        (t.textContent.trim().toLowerCase().startsWith('pdf') && curTypeTab==='pdf'))
+      t.classList.add('active');
+  });
+}
+
+// ── Type preview content ───────────────────────────────────────────────────────
+const TYPE_JSON_EXAMPLES = {
+  text: `<span class="json-key">"summary"</span><span class="json-punct">: </span><span class="json-str">"Experienced software engineer with 8 years building scalable web applications. Passionate about clean architecture and developer tooling."</span>`,
+
+  entries: `<span class="json-key">"experience"</span><span class="json-punct">: [
+  {
+    </span><span class="json-key">"title"</span><span class="json-punct">: </span><span class="json-str">"Senior Engineer"</span><span class="json-punct">,
+    </span><span class="json-key">"organization"</span><span class="json-punct">: </span><span class="json-str">"Acme Corp"</span><span class="json-punct">,
+    </span><span class="json-key">"start"</span><span class="json-punct">: </span><span class="json-str">"Jan 2021"</span><span class="json-punct">,
+    </span><span class="json-key">"end"</span><span class="json-punct">: </span><span class="json-str">"Present"</span><span class="json-punct">,
+    </span><span class="json-key">"location"</span><span class="json-punct">: </span><span class="json-str">"San Francisco, CA"</span><span class="json-punct">,
+    </span><span class="json-key">"subtitle"</span><span class="json-punct">: </span><span class="json-str">"Platform Infrastructure Team"</span><span class="json-punct">,
+    </span><span class="json-key">"bullets"</span><span class="json-punct">: [
+      </span><span class="json-str">"Led migration of monolith to microservices"</span><span class="json-punct">,
+      </span><span class="json-str">"Reduced deploy time by 60%"</span><span class="json-punct">
+    ]
+  }
+]</span>`,
+
+  skills: `<span class="json-key">"skills"</span><span class="json-punct">: {
+  </span><span class="json-key">"Languages"</span><span class="json-punct">: [</span><span class="json-str">"Python"</span><span class="json-punct">, </span><span class="json-str">"TypeScript"</span><span class="json-punct">, </span><span class="json-str">"Go"</span><span class="json-punct">],
+  </span><span class="json-key">"Frameworks"</span><span class="json-punct">: [</span><span class="json-str">"React"</span><span class="json-punct">, </span><span class="json-str">"FastAPI"</span><span class="json-punct">, </span><span class="json-str">"gRPC"</span><span class="json-punct">],
+  </span><span class="json-key">"Tools"</span><span class="json-punct">: [</span><span class="json-str">"Docker"</span><span class="json-punct">, </span><span class="json-str">"Kubernetes"</span><span class="json-punct">, </span><span class="json-str">"Terraform"</span><span class="json-punct">]
+}</span>
+<span class="json-punct">// — OR flat list —</span>
+<span class="json-key">"skills"</span><span class="json-punct">: [</span><span class="json-str">"Python"</span><span class="json-punct">, </span><span class="json-str">"TypeScript"</span><span class="json-punct">, </span><span class="json-str">"React"</span><span class="json-punct">, </span><span class="json-str">"Docker"</span><span class="json-punct">]</span>`,
+
+  bullets: `<span class="json-key">"certifications"</span><span class="json-punct">: [
+  </span><span class="json-str">"AWS Solutions Architect – Associate (2023)"</span><span class="json-punct">,
+  </span><span class="json-str">"Google Cloud Professional Data Engineer (2022)"</span><span class="json-punct">,
+  </span><span class="json-str">"Certified Kubernetes Administrator (CKA)"</span><span class="json-punct">
+]</span>`,
+
+  url_list: `<span class="json-key">"projects"</span><span class="json-punct">: [
+  {
+    </span><span class="json-key">"name"</span><span class="json-punct">: </span><span class="json-str">"OpenPipe"</span><span class="json-punct">,
+    </span><span class="json-key">"url"</span><span class="json-punct">: </span><span class="json-str">"github.com/you/openpipe"</span><span class="json-punct">,
+    </span><span class="json-key">"description"</span><span class="json-punct">: </span><span class="json-str">"Open-source data pipeline framework for ETL at scale."</span><span class="json-punct">,
+    </span><span class="json-key">"bullets"</span><span class="json-punct">: [
+      </span><span class="json-str">"1,200+ GitHub stars"</span><span class="json-punct">,
+      </span><span class="json-str">"Used in production by 3 Fortune 500 companies"</span><span class="json-punct">
+    ]
+  }
+]</span>`,
+
+  grouped_list: `<span class="json-key">"publications"</span><span class="json-punct">: [
+  {
+    </span><span class="json-key">"heading"</span><span class="json-punct">: </span><span class="json-str">"Journal Articles"</span><span class="json-punct">,
+    </span><span class="json-key">"items"</span><span class="json-punct">: [
+      {
+        </span><span class="json-key">"title"</span><span class="json-punct">: </span><span class="json-str">"Scaling Transformers for Long Documents"</span><span class="json-punct">,
+        </span><span class="json-key">"details"</span><span class="json-punct">: </span><span class="json-str">"Nature Machine Intelligence, 2024"</span><span class="json-punct">,
+        </span><span class="json-key">"url"</span><span class="json-punct">: </span><span class="json-str">"https://doi.org/10.1038/example"</span><span class="json-punct">
+      }
+    ]
+  }
+]</span>`,
+};
+
+const TYPE_PDF_PREVIEWS = {
+  text: `<div class="pdf-preview">
+    <div class="pdf-sec-name">Summary</div>
+    <div class="pdf-body">Experienced software engineer with 8 years building scalable web applications. Passionate about clean architecture and developer tooling.</div>
+  </div>`,
+
+  entries: `<div class="pdf-preview">
+    <div class="pdf-sec-name">Experience</div>
+    <div class="pdf-entry">
+      <div class="pdf-row">
+        <div class="pdf-row-l pdf-body"><span class="pdf-bold">Senior Engineer</span>  <span class="pdf-italic">Acme Corp</span></div>
+        <div class="pdf-row-r">Jan 2021 – Present  ·  San Francisco, CA</div>
+      </div>
+      <div class="pdf-body pdf-italic">Platform Infrastructure Team</div>
+      <div class="pdf-bullet pdf-body">Led migration of monolith to microservices</div>
+      <div class="pdf-bullet pdf-body">Reduced deploy time by 60%</div>
+    </div>
+  </div>`,
+
+  skills: `<div class="pdf-preview">
+    <div class="pdf-sec-name">Skills</div>
+    <div class="pdf-cat pdf-body"><span class="pdf-bold">Languages:</span>  Python, TypeScript, Go</div>
+    <div class="pdf-cat pdf-body"><span class="pdf-bold">Frameworks:</span>  React, FastAPI, gRPC</div>
+    <div class="pdf-cat pdf-body"><span class="pdf-bold">Tools:</span>  Docker, Kubernetes, Terraform</div>
+  </div>`,
+
+  bullets: `<div class="pdf-preview">
+    <div class="pdf-sec-name">Certifications</div>
+    <div class="pdf-bullet pdf-body">AWS Solutions Architect – Associate (2023)</div>
+    <div class="pdf-bullet pdf-body">Google Cloud Professional Data Engineer (2022)</div>
+    <div class="pdf-bullet pdf-body">Certified Kubernetes Administrator (CKA)</div>
+  </div>`,
+
+  url_list: `<div class="pdf-preview">
+    <div class="pdf-sec-name">Projects</div>
+    <div class="pdf-entry">
+      <div class="pdf-body"><span class="pdf-bold">OpenPipe</span>  —  <span class="pdf-url">github.com/you/openpipe</span></div>
+      <div class="pdf-body">Open-source data pipeline framework for ETL at scale.</div>
+      <div class="pdf-bullet pdf-body">1,200+ GitHub stars</div>
+      <div class="pdf-bullet pdf-body">Used in production by 3 Fortune 500 companies</div>
+    </div>
+  </div>`,
+
+  grouped_list: `<div class="pdf-preview">
+    <div class="pdf-sec-name">Publications</div>
+    <div class="pdf-subhead pdf-body">Journal Articles</div>
+    <div class="pdf-entry">
+      <div class="pdf-body"><span class="pdf-bold">Scaling Transformers for Long Documents</span>  <span class="pdf-url">https://doi.org/10.1038/example</span></div>
+      <div class="pdf-body pdf-italic">Nature Machine Intelligence, 2024</div>
+    </div>
+  </div>`,
+};
+
+function renderTypePreviewBody() {
+  const el = document.getElementById('type-preview-body');
+  if (curTypeTab === 'json') {
+    const ex = TYPE_JSON_EXAMPLES[curSecType] || `<span class="json-punct">// No example available for this type.</span>`;
+    el.innerHTML = `<div class="json-code-block">${ex}</div>`;
+  } else {
+    const prev = TYPE_PDF_PREVIEWS[curSecType] || `<div style="color:var(--text-3);font-size:12px;padding:12px 0">No PDF preview available.</div>`;
+    el.innerHTML = prev;
+  }
+}
+
+async function saveSecDef() {
+  const id   = document.getElementById('sec-id').value;
+  const body = {
+    display_name: document.getElementById('sec-display-name').value.trim(),
+    json_key:     document.getElementById('sec-json-key').value.trim(),
+    section_type: curSecType,
+  };
+  if (!body.display_name) { toast('Display name required.', 'err'); return; }
+  if (!body.json_key)     { toast('JSON key required.', 'err'); return; }
+  try {
+    if (id) { const u = await api('/api/section_defs/'+id,'PUT',body); sectionDefs = sectionDefs.map(s=>s.id===id?u:s); }
+    else    { const c = await api('/api/section_defs','POST',body); sectionDefs.push(c); }
+    closeModal('sec-modal'); renderAll(); toast(id?'Section updated.':'Section created.');
+  } catch(e) { toast(e.message,'err'); }
+}
+
+async function deleteSecDef(id) {
+  if (!confirm('Delete this section? It will be removed from all templates.')) return;
+  await api('/api/section_defs/'+id,'DELETE');
+  sectionDefs = sectionDefs.filter(s=>s.id!==id);
+  templates.forEach(t => { t.sections = (t.sections||[]).filter(s=>s!==id); });
+  renderAll(); toast('Section deleted.');
+}
+
+// ── Templates ─────────────────────────────────────────────────────────────────
 function renderTemplates() {
   const el = document.getElementById('templates-list');
-  if (!templates.length) {
-    el.innerHTML = `<div class="empty-state">
-      <svg width="40" height="40" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg>
-      <p>No templates yet. Click "New Template" to create one.</p></div>`;
-    return;
-  }
+  if (!templates.length) { el.innerHTML = emptyState('No templates yet. Click "New Template" to create one.'); return; }
   el.innerHTML = templates.map(t => `
     <div class="card">
       <div class="card-header">
         <div>
           <div class="card-title">${esc(t.name)}</div>
           ${t.description ? `<div class="card-sub">${esc(t.description)}</div>` : ''}
-          <div style="margin-top:8px">
-            <span class="badge blue">${esc(t.page_size || 'letter')}</span>
-            ${(t.sections||[]).map(s => `<span class="badge">${esc(s)}</span>`).join('')}
+          <div style="margin-top:6px">
+            <span class="badge blue">${esc(t.page_size||'letter')}</span>
+            ${(t.sections||[]).map(sid => {
+              const sd = secById(sid);
+              return sd ? `<span class="badge">${esc(sd.display_name)}</span>` : '';
+            }).join('')}
           </div>
         </div>
         <div class="card-actions">
-          <button class="btn btn-ghost btn-sm" onclick="openTemplateModal('${t.id}')">Edit</button>
-          <button class="btn btn-danger btn-sm" onclick="deleteTemplate('${t.id}')">Delete</button>
+          <button class="btn btn-ghost btn-sm" onclick="openTplModal('${t.id}')">Edit</button>
+          <button class="btn btn-danger btn-sm" onclick="deleteTpl('${t.id}')">Delete</button>
         </div>
       </div>
     </div>`).join('');
 }
 
-// ── Generate panel render ─────────────────────────────────────────────────────
-function renderGeneratePanel() {
+function openTplModal(id=null) {
+  document.getElementById('tpl-id').value = id||'';
+  document.getElementById('tpl-modal-title').textContent = id ? 'Edit Template' : 'New Template';
+  const t = id ? templates.find(x=>x.id===id) : null;
+  const s = t?.style || {};
+  document.getElementById('tpl-name').value        = t?.name||'';
+  document.getElementById('tpl-description').value = t?.description||'';
+  document.getElementById('tpl-page-size').value   = t?.page_size||'letter';
+  document.getElementById('s-font').value          = s.font_name||'Times-Roman';
+  document.getElementById('s-sz-name').value       = s.size_name||22;
+  document.getElementById('s-sz-section').value    = s.size_section||10;
+  document.getElementById('s-sz-body').value       = s.size_body||9;
+  document.getElementById('s-mg-v').value          = s.margin_top||0.65;
+  document.getElementById('s-mg-h').value          = s.margin_left||0.75;
+  document.getElementById('s-sp-between').value    = s.space_between_sections||6;
+  document.getElementById('s-sp-entry').value      = s.space_after_entry||5;
+  document.getElementById('s-bullet-char').value   = s.bullet_char||'•';
+  document.getElementById('s-rule').value          = s.rule_thickness||0.6;
+  curTplSections = t ? [...(t.sections||[])] : [];
+  renderTplSecList();
+  document.getElementById('tpl-modal').classList.add('open');
+}
+
+function renderTplSecList() {
+  const el = document.getElementById('tpl-sec-list');
+  el.innerHTML = curTplSections.map((sid, i) => {
+    const sd = secById(sid);
+    const name  = sd ? esc(sd.display_name) : `<span style="color:var(--red)">${esc(sid)} (missing)</span>`;
+    const stype = sd ? `<span class="sec-type">${esc(sd.section_type)}</span>` : '';
+    return `<div class="section-item" draggable="true"
+        ondragstart="onDS(${i})" ondragover="onDO(event,${i})"
+        ondrop="onDD(event,${i})" ondragleave="onDL(event)" ondragend="onDE()">
+      <span class="drag-handle">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="5" r="1" fill="currentColor"/><circle cx="15" cy="5" r="1" fill="currentColor"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="19" r="1" fill="currentColor"/><circle cx="15" cy="19" r="1" fill="currentColor"/></svg>
+      </span>
+      <span class="sec-name">${name}</span>
+      ${stype}
+      <span class="remove-sec" onclick="removeTplSec(${i})">
+        <svg width="11" height="11" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
+      </span>
+    </div>`;
+  }).join('');
+  // populate add dropdown
+  const sel = document.getElementById('tpl-add-sec-sel');
+  const used = new Set(curTplSections);
+  sel.innerHTML = '<option value="">Add section…</option>' +
+    sectionDefs.filter(sd=>!used.has(sd.id)).map(sd=>
+      `<option value="${sd.id}">${esc(sd.display_name)} (${esc(sd.section_type)})</option>`
+    ).join('');
+}
+
+function tplAddSection() {
+  const v = document.getElementById('tpl-add-sec-sel').value;
+  if (!v) return;
+  curTplSections.push(v);
+  renderTplSecList();
+}
+
+function removeTplSec(i) { curTplSections.splice(i,1); renderTplSecList(); }
+
+// drag
+function onDS(i) { dragSrcIdx=i; setTimeout(()=>document.querySelectorAll('.section-item')[i]?.classList.add('dragging'),0); }
+function onDE()  { document.querySelectorAll('.section-item').forEach(e=>e.classList.remove('dragging','drag-over')); dragSrcIdx=null; }
+function onDO(e,i){ e.preventDefault(); document.querySelectorAll('.section-item')[i]?.classList.add('drag-over'); }
+function onDL(e) { e.currentTarget.classList.remove('drag-over'); }
+function onDD(e,i){ e.preventDefault(); if(dragSrcIdx===null||dragSrcIdx===i) return; const m=curTplSections.splice(dragSrcIdx,1)[0]; curTplSections.splice(i,0,m); renderTplSecList(); }
+
+function syncFont() {}  // variants handled server-side
+
+async function saveTpl() {
+  const id   = document.getElementById('tpl-id').value;
+  const font = document.getElementById('s-font').value;
+  const fv   = FONT_VARIANTS[font] || {bold:font+'-Bold',italic:font+'-Oblique'};
+  const mv   = parseFloat(document.getElementById('s-mg-v').value);
+  const mh   = parseFloat(document.getElementById('s-mg-h').value);
+  const body = {
+    name:        document.getElementById('tpl-name').value.trim(),
+    description: document.getElementById('tpl-description').value.trim(),
+    page_size:   document.getElementById('tpl-page-size').value,
+    sections:    [...curTplSections],
+    style: {
+      font_name: font, font_name_bold: fv.bold, font_name_italic: fv.italic,
+      size_name:    parseFloat(document.getElementById('s-sz-name').value),
+      size_title: 10, size_contact: 9,
+      size_section: parseFloat(document.getElementById('s-sz-section').value),
+      size_body:    parseFloat(document.getElementById('s-sz-body').value),
+      size_bullet:  parseFloat(document.getElementById('s-sz-body').value),
+      margin_top: mv, margin_bottom: mv, margin_left: mh, margin_right: mh,
+      space_after_name: 2, space_after_contact: 6, space_after_section: 3,
+      space_after_entry:    parseFloat(document.getElementById('s-sp-entry').value),
+      space_after_bullet: 1,
+      space_between_sections: parseFloat(document.getElementById('s-sp-between').value),
+      rule_thickness: parseFloat(document.getElementById('s-rule').value),
+      bullet_char:  document.getElementById('s-bullet-char').value||'•',
+      bullet_indent: 12,
+    }
+  };
+  if (!body.name) { toast('Name required.','err'); return; }
+  if (!body.sections.length) { toast('Add at least one section.','err'); return; }
+  try {
+    if (id) { const u=await api('/api/templates/'+id,'PUT',body); templates=templates.map(t=>t.id===id?u:t); }
+    else    { const c=await api('/api/templates','POST',body); templates.push(c); }
+    closeModal('tpl-modal'); renderAll(); toast(id?'Template updated.':'Template created.');
+  } catch(e) { toast(e.message,'err'); }
+}
+
+async function deleteTpl(id) {
+  if (!confirm('Delete this template?')) return;
+  await api('/api/templates/'+id,'DELETE');
+  templates=templates.filter(t=>t.id!==id);
+  if (selectedTplId===id) selectedTplId=templates[0]?.id||null;
+  renderAll(); toast('Template deleted.');
+}
+
+// ── Generate panel ─────────────────────────────────────────────────────────────
+function renderGenerate() {
   // Jobs
-  const jEl = document.getElementById('gen-jobs-list');
+  const jel = document.getElementById('gen-jobs-list');
   if (!jobs.length) {
-    jEl.innerHTML = `<div class="empty-state" style="padding:20px"><p>No input files yet.<br>Add them in "Input Files".</p></div>`;
+    jel.innerHTML = `<div style="padding:16px 0;text-align:center;color:var(--text-3);font-size:12px">No input files yet.<br>Add them in "Input Files".</div>`;
   } else {
-    jEl.innerHTML = jobs.map(j => `
-      <div class="job-checkbox-item ${selectedJobIds.has(j.id) ? 'selected' : ''}" onclick="toggleJob('${j.id}', this)">
-        <input type="checkbox" ${selectedJobIds.has(j.id) ? 'checked' : ''} onclick="event.stopPropagation();toggleJob('${j.id}', this.closest('.job-checkbox-item'))">
-        <div class="job-info">
-          <div class="job-name">${esc(j.name || 'Unnamed')}</div>
-          <div class="job-path">${esc(j.json_path || '')}</div>
+    jel.innerHTML = jobs.map(j=>`
+      <div class="job-check ${selectedJobIds.has(j.id)?'selected':''}" onclick="toggleJob('${j.id}')">
+        <input type="checkbox" ${selectedJobIds.has(j.id)?'checked':''} onclick="event.stopPropagation();toggleJob('${j.id}')">
+        <div class="ji">
+          <div class="ji-name">${esc(j.name||'Unnamed')}</div>
+          <div class="ji-path">${esc(j.json_path||'')}</div>
         </div>
       </div>`).join('');
   }
 
   // Templates
-  const tEl = document.getElementById('gen-templates-list');
+  const tel = document.getElementById('gen-tpl-list');
   if (!templates.length) {
-    tEl.innerHTML = `<div class="empty-state" style="padding:20px"><p>No templates found.</p></div>`;
+    tel.innerHTML = `<div style="padding:16px 0;text-align:center;color:var(--text-3);font-size:12px">No templates found.</div>`;
   } else {
-    if (!selectedTemplateId && templates.length) selectedTemplateId = templates[0].id;
-    tEl.innerHTML = templates.map(t => `
-      <div class="template-radio-item ${selectedTemplateId === t.id ? 'selected' : ''}" onclick="selectTemplate('${t.id}')">
-        <input type="radio" name="gen-tpl" ${selectedTemplateId === t.id ? 'checked' : ''} onclick="event.stopPropagation();selectTemplate('${t.id}')">
+    if (!selectedTplId && templates.length) selectedTplId = templates[0].id;
+    tel.innerHTML = templates.map(t=>`
+      <div class="tpl-radio ${selectedTplId===t.id?'selected':''}" onclick="selectTpl('${t.id}')">
+        <input type="radio" name="gen-tpl" ${selectedTplId===t.id?'checked':''} onclick="event.stopPropagation();selectTpl('${t.id}')">
         <div>
-          <div class="tpl-name">${esc(t.name)}</div>
-          <div class="tpl-desc">${esc(t.description || '')}</div>
+          <div class="tr-name">${esc(t.name)}</div>
+          <div class="tr-desc">${esc(t.description||'')}</div>
         </div>
       </div>`).join('');
   }
 }
 
-function toggleJob(id, row) {
-  if (selectedJobIds.has(id)) selectedJobIds.delete(id);
-  else selectedJobIds.add(id);
-  renderGeneratePanel();
+function toggleJob(id) {
+  if (selectedJobIds.has(id)) selectedJobIds.delete(id); else selectedJobIds.add(id);
+  renderGenerate();
 }
+function selectTpl(id) { selectedTplId=id; renderGenerate(); }
 
-function selectTemplate(id) {
-  selectedTemplateId = id;
-  renderGeneratePanel();
-}
-
-// ── Generate ──────────────────────────────────────────────────────────────────
 async function runGenerate() {
   const outputDir = document.getElementById('output-dir').value.trim();
-  if (!outputDir) { showToast('Please set an output directory.', 'err'); return; }
-  if (!selectedTemplateId) { showToast('Please select a template.', 'err'); return; }
-  if (!selectedJobIds.size) { showToast('Please select at least one input file.', 'err'); return; }
+  if (!outputDir)        { toast('Set an output directory.','err'); return; }
+  if (!selectedTplId)    { toast('Select a template.','err'); return; }
+  if (!selectedJobIds.size) { toast('Select at least one input file.','err'); return; }
 
   const btn = document.getElementById('gen-btn');
-  btn.disabled = true;
-  btn.innerHTML = `<div class="spinner"></div> Generating…`;
+  btn.disabled=true;
+  btn.innerHTML=`<div class="spinner"></div> Generating…`;
 
   const log = document.getElementById('gen-log');
-  log.innerHTML = `<div class="log-entry log-info"><span>Starting generation…</span></div>`;
+  log.innerHTML=`<div class="le log-info"><span>Starting…</span></div>`;
 
   try {
-    const res = await api('/api/generate', 'POST', {
-      job_ids: [...selectedJobIds],
-      template_id: selectedTemplateId,
-      output_dir: outputDir,
+    const res = await api('/api/generate','POST',{
+      job_ids:[...selectedJobIds], template_id:selectedTplId, output_dir:outputDir
     });
-    log.innerHTML = '';
-    res.results.forEach(r => {
+    log.innerHTML='';
+    res.results.forEach(r=>{
+      const name = esc(jobs.find(j=>j.id===r.job_id)?.name || r.job_id);
       if (r.ok) {
-        log.innerHTML += `<div class="log-entry log-ok">
-          <span class="log-icon">✓</span>
-          <span>${esc(jobs.find(j=>j.id===r.job_id)?.name || r.job_id)} → <span class="log-path">${esc(r.output)}</span></span>
-        </div>`;
+        log.innerHTML+=`<div class="le log-ok"><span class="le-icon">✓</span><span>${name} → <span class="log-path">${esc(r.output)}</span></span></div>`;
       } else {
-        log.innerHTML += `<div class="log-entry log-err">
-          <span class="log-icon">✗</span>
-          <span>${esc(jobs.find(j=>j.id===r.job_id)?.name || r.job_id)}: ${esc(r.error)}</span>
-        </div>`;
+        log.innerHTML+=`<div class="le log-err"><span class="le-icon">✗</span><pre style="margin:0;white-space:pre-wrap;font-size:inherit">${name}:\n${esc(r.error||'')}</pre></div>`;
       }
     });
-    const ok = res.results.filter(r=>r.ok).length;
-    const fail = res.results.filter(r=>!r.ok).length;
-    showToast(`Done: ${ok} generated${fail ? ', ' + fail + ' failed' : ''}.`, fail ? 'err' : 'ok');
+    const ok=res.results.filter(r=>r.ok).length, fail=res.results.filter(r=>!r.ok).length;
+    toast(`Done: ${ok} generated${fail?', '+fail+' failed':''}`, fail?'err':'ok');
   } catch(e) {
-    log.innerHTML += `<div class="log-entry log-err"><span>Error: ${esc(e.message)}</span></div>`;
-    showToast('Generation failed: ' + e.message, 'err');
+    log.innerHTML+=`<div class="le log-err"><span>Error: ${esc(e.message)}</span></div>`;
+    toast('Generation failed: '+e.message,'err');
   } finally {
-    btn.disabled = false;
-    btn.innerHTML = `<svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 13 9 20 9"/><polygon points="22 13 13 2 2 13 2 22 22 22"/></svg> Generate`;
+    btn.disabled=false;
+    btn.innerHTML=`<svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="13 2 13 9 20 9"/><polygon points="22 13 13 2 2 13 2 22 22 22"/></svg> Generate`;
   }
 }
 
-// ── Job modal ─────────────────────────────────────────────────────────────────
-function openJobModal(id = null) {
-  document.getElementById('job-id').value = id || '';
-  document.getElementById('job-modal-title').textContent = id ? 'Edit Input File' : 'Add Input File';
-  if (id) {
-    const j = jobs.find(x => x.id === id);
-    document.getElementById('job-name').value = j.name || '';
-    document.getElementById('job-json-path').value = j.json_path || '';
-    document.getElementById('job-output-name').value = j.output_name || '';
-    document.getElementById('job-notes').value = j.notes || '';
-  } else {
-    ['job-name','job-json-path','job-output-name','job-notes'].forEach(id => document.getElementById(id).value = '');
-  }
-  document.getElementById('job-modal').classList.add('open');
+// ── Misc ──────────────────────────────────────────────────────────────────────
+function emptyState(msg) {
+  return `<div class="empty-state"><svg width="36" height="36" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><rect x="3" y="3" width="18" height="18" rx="2"/><path d="M3 9h18M9 21V9"/></svg><p>${msg}</p></div>`;
 }
-function closeJobModal() { document.getElementById('job-modal').classList.remove('open'); }
-
-async function saveJob() {
-  const id = document.getElementById('job-id').value;
-  const body = {
-    name: document.getElementById('job-name').value.trim(),
-    json_path: document.getElementById('job-json-path').value.trim(),
-    output_name: document.getElementById('job-output-name').value.trim(),
-    notes: document.getElementById('job-notes').value.trim(),
-  };
-  if (!body.name) { showToast('Name is required.', 'err'); return; }
-  if (!body.json_path) { showToast('JSON path is required.', 'err'); return; }
-  try {
-    if (id) {
-      const updated = await api('/api/jobs/' + id, 'PUT', body);
-      jobs = jobs.map(j => j.id === id ? updated : j);
-    } else {
-      const created = await api('/api/jobs', 'POST', body);
-      jobs.push(created);
-    }
-    closeJobModal();
-    renderAll();
-    showToast(id ? 'File updated.' : 'File added.');
-  } catch(e) { showToast(e.message, 'err'); }
-}
-
-async function deleteJob(id) {
-  if (!confirm('Delete this input file?')) return;
-  await api('/api/jobs/' + id, 'DELETE');
-  jobs = jobs.filter(j => j.id !== id);
-  selectedJobIds.delete(id);
-  renderAll();
-  showToast('File deleted.');
-}
-
-// ── Template modal ────────────────────────────────────────────────────────────
-function openTemplateModal(id = null) {
-  document.getElementById('tpl-id').value = id || '';
-  document.getElementById('tpl-modal-title').textContent = id ? 'Edit Template' : 'New Template';
-
-  let t = id ? templates.find(x => x.id === id) : null;
-  let s = t?.style || {};
-
-  document.getElementById('tpl-name').value = t?.name || '';
-  document.getElementById('tpl-description').value = t?.description || '';
-  document.getElementById('tpl-page-size').value = t?.page_size || 'letter';
-
-  // style fields
-  document.getElementById('style-font').value = s.font_name || 'Times-Roman';
-  document.getElementById('style-size-name').value = s.size_name || 22;
-  document.getElementById('style-size-section').value = s.size_section || 10;
-  document.getElementById('style-size-body').value = s.size_body || 9;
-  document.getElementById('style-margin-v').value = s.margin_top || 0.65;
-  document.getElementById('style-margin-h').value = s.margin_left || 0.75;
-  document.getElementById('style-space-between').value = s.space_between_sections || 6;
-  document.getElementById('style-space-entry').value = s.space_after_entry || 5;
-  document.getElementById('style-bullet-char').value = s.bullet_char || '•';
-  document.getElementById('style-rule-thickness').value = s.rule_thickness || 0.6;
-
-  // sections
-  currentSections = t ? [...t.sections] : ['summary','experience','education','skills'];
-  renderSectionList();
-  populateAddSectionSelect();
-
-  document.getElementById('tpl-modal').classList.add('open');
-}
-function closeTplModal() { document.getElementById('tpl-modal').classList.remove('open'); }
-
-function populateAddSectionSelect() {
-  const all = meta.available_sections || ['summary','experience','education','skills','projects','certifications'];
-  const sel = document.getElementById('add-section-select');
-  sel.innerHTML = '<option value="">Add section…</option>' +
-    all.filter(s => !currentSections.includes(s)).map(s => `<option value="${s}">${cap(s)}</option>`).join('');
-}
-
-function renderSectionList() {
-  const el = document.getElementById('tpl-sections');
-  el.innerHTML = currentSections.map((s, i) => `
-    <div class="section-item" draggable="true"
-      ondragstart="onDragStart(${i})" ondragover="onDragOver(event,${i})"
-      ondrop="onDrop(event,${i})" ondragleave="onDragLeave(event)"
-      ondragend="onDragEnd()">
-      <span class="drag-handle">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="9" cy="5" r="1" fill="currentColor"/><circle cx="15" cy="5" r="1" fill="currentColor"/><circle cx="9" cy="12" r="1" fill="currentColor"/><circle cx="15" cy="12" r="1" fill="currentColor"/><circle cx="9" cy="19" r="1" fill="currentColor"/><circle cx="15" cy="19" r="1" fill="currentColor"/></svg>
-      </span>
-      <span class="section-name">${cap(s)}</span>
-      <span class="remove-section" onclick="removeSection(${i})">
-        <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>
-      </span>
-    </div>`).join('');
-  populateAddSectionSelect();
-}
-
-function addSection() {
-  const s = document.getElementById('add-section-select').value;
-  if (!s) return;
-  currentSections.push(s);
-  renderSectionList();
-}
-
-function removeSection(i) {
-  currentSections.splice(i, 1);
-  renderSectionList();
-}
-
-// Drag-and-drop for sections
-function onDragStart(i) { dragSrcIndex = i; setTimeout(() => document.querySelectorAll('.section-item')[i]?.classList.add('dragging'), 0); }
-function onDragEnd() {
-  document.querySelectorAll('.section-item').forEach(el => el.classList.remove('dragging','drag-over'));
-  dragSrcIndex = null;
-}
-function onDragOver(e, i) { e.preventDefault(); document.querySelectorAll('.section-item')[i]?.classList.add('drag-over'); }
-function onDragLeave(e) { e.currentTarget.classList.remove('drag-over'); }
-function onDrop(e, i) {
-  e.preventDefault();
-  if (dragSrcIndex === null || dragSrcIndex === i) return;
-  const moved = currentSections.splice(dragSrcIndex, 1)[0];
-  currentSections.splice(i, 0, moved);
-  renderSectionList();
-}
-
-function syncFontVariants() {
-  // nothing to do visually; variants derived server-side
-}
-
-async function saveTemplate() {
-  const id = document.getElementById('tpl-id').value;
-  const fontName = document.getElementById('style-font').value;
-  const fv = FONT_VARIANTS[fontName] || { bold: fontName+'-Bold', italic: fontName+'-Oblique' };
-  const mv = parseFloat(document.getElementById('style-margin-v').value);
-  const mh = parseFloat(document.getElementById('style-margin-h').value);
-
-  const body = {
-    name: document.getElementById('tpl-name').value.trim(),
-    description: document.getElementById('tpl-description').value.trim(),
-    page_size: document.getElementById('tpl-page-size').value,
-    sections: [...currentSections],
-    style: {
-      font_name: fontName,
-      font_name_bold: fv.bold,
-      font_name_italic: fv.italic,
-      size_name: parseFloat(document.getElementById('style-size-name').value),
-      size_title: 10,
-      size_contact: 9,
-      size_section: parseFloat(document.getElementById('style-size-section').value),
-      size_body: parseFloat(document.getElementById('style-size-body').value),
-      size_bullet: parseFloat(document.getElementById('style-size-body').value),
-      margin_top: mv,
-      margin_bottom: mv,
-      margin_left: mh,
-      margin_right: mh,
-      space_after_name: 2,
-      space_after_contact: 6,
-      space_after_section: 3,
-      space_after_entry: parseFloat(document.getElementById('style-space-entry').value),
-      space_after_bullet: 1,
-      space_between_sections: parseFloat(document.getElementById('style-space-between').value),
-      rule_thickness: parseFloat(document.getElementById('style-rule-thickness').value),
-      bullet_char: document.getElementById('style-bullet-char').value || '•',
-      bullet_indent: 12,
-    }
-  };
-  if (!body.name) { showToast('Template name is required.', 'err'); return; }
-  if (!body.sections.length) { showToast('Add at least one section.', 'err'); return; }
-
-  try {
-    if (id) {
-      const updated = await api('/api/templates/' + id, 'PUT', body);
-      templates = templates.map(t => t.id === id ? updated : t);
-    } else {
-      const created = await api('/api/templates', 'POST', body);
-      templates.push(created);
-    }
-    closeTplModal();
-    renderAll();
-    showToast(id ? 'Template updated.' : 'Template created.');
-  } catch(e) { showToast(e.message, 'err'); }
-}
-
-async function deleteTemplate(id) {
-  if (!confirm('Delete this template?')) return;
-  await api('/api/templates/' + id, 'DELETE');
-  templates = templates.filter(t => t.id !== id);
-  if (selectedTemplateId === id) selectedTemplateId = templates[0]?.id || null;
-  renderAll();
-  showToast('Template deleted.');
-}
-
-// ── Helpers ───────────────────────────────────────────────────────────────────
-function esc(s) { return String(s||'').replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;'); }
-function cap(s) { return s.charAt(0).toUpperCase() + s.slice(1); }
 
 // Close modals on backdrop click
 document.querySelectorAll('.modal-backdrop').forEach(b => {
-  b.addEventListener('click', e => { if (e.target === b) b.classList.remove('open'); });
+  b.addEventListener('click', e => { if (e.target===b) b.classList.remove('open'); });
 });
 
-// Enter key in job modal
-document.getElementById('job-modal').addEventListener('keydown', e => { if (e.key === 'Enter') saveJob(); });
+// Enter-to-save in job modal
+document.getElementById('job-modal').addEventListener('keydown', e => {
+  if (e.key==='Enter') saveJob();
+});
 
 boot();
 </script>

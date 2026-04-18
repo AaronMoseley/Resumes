@@ -1,81 +1,160 @@
 {
+  "section_defs": [
+    {
+      "id": "sec_summary",
+      "display_name": "Summary",
+      "json_key": "summary",
+      "section_type": "text"
+    },
+    {
+      "id": "sec_experience",
+      "display_name": "Experience",
+      "json_key": "experience",
+      "section_type": "entries"
+    },
+    {
+      "id": "sec_education",
+      "display_name": "Education",
+      "json_key": "education",
+      "section_type": "entries"
+    },
+    {
+      "id": "sec_skills",
+      "display_name": "Skills",
+      "json_key": "skills",
+      "section_type": "skills"
+    },
+    {
+      "id": "sec_projects",
+      "display_name": "Projects",
+      "json_key": "projects",
+      "section_type": "url_list"
+    },
+    {
+      "id": "sec_certifications",
+      "display_name": "Certifications",
+      "json_key": "certifications",
+      "section_type": "bullets"
+    },
+    {
+      "id": "sec_publications",
+      "display_name": "Publications",
+      "json_key": "publications",
+      "section_type": "grouped_list"
+    },
+    {
+      "display_name": "Publications",
+      "json_key": "publications_projects",
+      "section_type": "url_list",
+      "id": "sec_4cd37402"
+    },
+    {
+      "display_name": "Research Experience",
+      "json_key": "research_experience",
+      "section_type": "entries",
+      "id": "sec_a087fb7b"
+    },
+    {
+      "display_name": "Teaching Experience",
+      "json_key": "teaching_experience",
+      "section_type": "entries",
+      "id": "sec_760a33fe"
+    }
+  ],
   "templates": [
     {
-      "id": "tpl_resume",
       "name": "Standard Resume",
       "description": "One-page resume with experience, education, and skills",
       "page_size": "letter",
       "sections": [
-        "summary",
-        "experience",
-        "education",
-        "skills",
-        "projects",
-        "certifications"
+        "sec_experience",
+        "sec_4cd37402",
+        "sec_projects",
+        "sec_education",
+        "sec_skills"
       ],
       "style": {
         "font_name": "Times-Roman",
         "font_name_bold": "Times-Bold",
         "font_name_italic": "Times-Italic",
-        "size_name": 22,
+        "size_name": 15,
         "size_title": 10,
         "size_contact": 9,
-        "size_section": 10,
+        "size_section": 9,
         "size_body": 9,
         "size_bullet": 9,
-        "margin_top": 0.65,
-        "margin_bottom": 0.65,
-        "margin_left": 0.75,
-        "margin_right": 0.75,
+        "margin_top": 0.1,
+        "margin_bottom": 0.1,
+        "margin_left": 0.3,
+        "margin_right": 0.3,
         "space_after_name": 2,
         "space_after_contact": 6,
         "space_after_section": 3,
-        "space_after_entry": 5,
+        "space_after_entry": 1,
         "space_after_bullet": 1,
-        "space_between_sections": 6,
+        "space_between_sections": 1,
         "rule_thickness": 0.6,
         "bullet_char": "\u2022",
         "bullet_indent": 12
-      }
+      },
+      "id": "tpl_resume"
     },
     {
-      "id": "tpl_cv",
       "name": "Academic CV",
-      "description": "Expanded CV with publications focus; A4 page size",
-      "page_size": "A4",
+      "description": "Expanded CV with publications",
+      "page_size": "letter",
       "sections": [
-        "summary",
-        "education",
-        "experience",
-        "skills",
-        "projects",
-        "certifications"
+        "sec_education",
+        "sec_publications",
+        "sec_a087fb7b",
+        "sec_760a33fe",
+        "sec_experience",
+        "sec_projects",
+        "sec_skills"
       ],
       "style": {
-        "font_name": "Helvetica",
-        "font_name_bold": "Helvetica-Bold",
-        "font_name_italic": "Helvetica-Oblique",
-        "size_name": 20,
-        "size_title": 11,
+        "font_name": "Times-Roman",
+        "font_name_bold": "Times-Bold",
+        "font_name_italic": "Times-Italic",
+        "size_name": 15,
+        "size_title": 10,
         "size_contact": 9,
-        "size_section": 10,
+        "size_section": 9,
         "size_body": 9,
         "size_bullet": 9,
-        "margin_top": 1.0,
-        "margin_bottom": 1.0,
-        "margin_left": 1.0,
-        "margin_right": 1.0,
-        "space_after_name": 3,
-        "space_after_contact": 8,
-        "space_after_section": 4,
+        "margin_top": 0.4,
+        "margin_bottom": 0.4,
+        "margin_left": 0.4,
+        "margin_right": 0.4,
+        "space_after_name": 2,
+        "space_after_contact": 6,
+        "space_after_section": 3,
         "space_after_entry": 6,
         "space_after_bullet": 1,
         "space_between_sections": 8,
         "rule_thickness": 0.4,
         "bullet_char": "\u2013",
-        "bullet_indent": 14
-      }
+        "bullet_indent": 12
+      },
+      "id": "tpl_cv"
     }
   ],
-  "jobs": []
+  "jobs": [
+    {
+      "name": "Main Resume",
+      "json_path": "/home/AMoseley/Utilities/Resumes/SourceFiles/resume.json",
+      "output_name": "AaronMoseleyResume.pdf",
+      "notes": "",
+      "id": "job_839c1e6c",
+      "created_at": "2026-04-18T12:53:08.256408"
+    },
+    {
+      "name": "Main CV",
+      "json_path": "/home/AMoseley/Utilities/Resumes/SourceFiles/cv.json",
+      "output_name": "AaronMoseleyCV.pdf",
+      "notes": "",
+      "id": "job_af876d5d",
+      "created_at": "2026-04-18T13:06:44.122127"
+    }
+  ]
 }

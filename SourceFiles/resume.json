@@ -55,10 +55,10 @@
       ]
     }
   ],
-  "publications": [
+  "publications_projects": [
     {
       "name": "PolyCL: Context-Aware Contrastive Learning for Image Segmentation",
-      "url": "https://aaronmoseley.github.io/downloads/PolyCLPaper.pdf",
+      "url": "https://ieeexplore.ieee.org/document/10635698",
       "bullets": [
         "Novel contrastive learning strategy for medical image segmentation models, shown to significantly improve over baselines",
         "Published at ISBI 2024, First author"

@@ -68,7 +68,7 @@
       "start": "May 2023",
       "end": "August 2023",
       "bullets": [
-        "Developed physical verification rules in Siemens’ Standard Verification Rule Format (SVRF) and designed transistor-level validation cells for unit testing using Cadence Virtuoso",
+        "Developed physical verification rules in Siemens' Standard Verification Rule Format (SVRF) and designed transistor-level validation cells for unit testing using Cadence Virtuoso",
         "Created comprehensive Vim syntax highlighter for SVRF using Vimscript"
       ]
     },
@@ -117,19 +117,46 @@
       ]
     }
   ],
-  "publications": {
-    "published_papers": [
-      "Moseley, Aaron & Imran, Abdullah-Al-Zubaer. (2024). PolyCL: Context-Aware Contrastive Learning for Image Segmentation. 10.1109/ISBI56570.2024.10635698.",
-      "Ward, T., Moseley, A., & Imran, A.-A.-Z. (2025). Domain and Task-Focused Example Selection for Data-Efficient Contrastive Medical Image Segmentation. https://arxiv.org/abs/2505.19208",
-      "Madrigal, Melanie & Moseley, Aaron & Moseley, Jenna & Dowell, Jordan. (2026). SkelPy: A graphic user interface–based approach for skeletonizing fungal networks. Applications in Plant Sciences. 10.1002/aps3.70049.",
-      "Mills, J., Otero Munoz, J., Dickerson, K., Britt, I., Couture, A., Doskow, J., Fry, J., Luxnat, M., Moseley, A., Novikov, I., Quintinar-Pe˜na, A., Richburg, A., Samiei, S., Schaper, D., Slone, D., Snow, W., Visser, G., Winkelbauer, J. (2026). Development of a Modular Current-Mode NaI(Tl) Detector Array for Parity Odd (n,γ) Cross Section Measurements."
-    ],
-    "presentations": [
-      "A. Moseley, A. Imran, “Context-aware contrastive pretraining for improved medical image segmentation,”Annual Commonwealth Computational Summit (CCS): Artificial Intelligence, Lexington, KY, October 2023.",
-      "A. Moseley, J. Mills, J. Fry, C. Crawford, ”Developing a Readout Software for the NOPTREX Experiment”, American Physical Society Meeting, Minneapolis, MI, April 2023, National Conference on Undergraduate Research, Eau Claire, WI, April 2023.",
-      "A. Moseley, A. Wang, A. Imran, ”Context-Aware Multitasking for Medical Image Segmentation”, University of Kentucky 5 Minute Fast Track, Lexington, KY, October 2023."
-    ]
-  },
+  "publications": [
+    {
+      "heading": "Published Papers",
+      "items": [
+        {
+          "title": "Moseley, Aaron & Imran, Abdullah-Al-Zubaer. (2024). PolyCL: Context-Aware Contrastive Learning for Image Segmentation. 10.1109/ISBI56570.2024.10635698.",
+          "url": "https://ieeexplore.ieee.org/document/10635698"
+        },
+        {
+          "title": "Ward, T., Moseley, A., & Imran, A.-A.-Z. (2025). Domain and Task-Focused Example Selection for Data-Efficient Contrastive Medical Image Segmentation.",
+          "url": "https://arxiv.org/pdf/2505.19208"
+        },
+        {
+          "title": "Madrigal, Melanie & Moseley, Aaron & Moseley, Jenna & Dowell, Jordan. (2026). SkelPy: A graphic user interface–based approach for skeletonizing fungal networks. Applications in Plant Sciences. 10.1002/aps3.70049.",
+          "url": "https://www.researchgate.net/publication/403091139_SkelPy_A_graphic_user_interface-based_approach_for_skeletonizing_fungal_networks"
+        },
+        {
+          "title": "Mills, J., Otero Munoz, J., Dickerson, K., Britt, I., Couture, A., Doskow, J., Fry, J., Luxnat, M., Moseley, A., Novikov, I., Quintinar-Pe˜na, A., Richburg, A., Samiei, S., Schaper, D., Slone, D., Snow, W., Visser, G., Winkelbauer, J. (2026). Development of a Modular Current-Mode NaI(Tl) Detector Array for Parity Odd (n,γ) Cross Section Measurements.",
+          "url": "https://arxiv.org/abs/2604.06459"
+        }
+      ]
+    },
+    {
+      "heading": "Presentations",
+      "items": [
+        {
+          "title": "A. Moseley, A. Imran, “Context-aware contrastive pretraining for improved medical image segmentation,”Annual Commonwealth Computational Summit (CCS): Artificial Intelligence, Lexington, KY, October 2023.",
+          "url": "https://aaronmoseley.github.io/downloads/PolyCLPoster.pptx"
+        },
+        {
+          "title": "A. Moseley, J. Mills, J. Fry, C. Crawford, ”Developing a Readout Software for the NOPTREX Experiment”, American Physical Society Meeting, Minneapolis, MI, April 2023, National Conference on Undergraduate Research, Eau Claire, WI, April 2023.",
+          "url": "https://aaronmoseley.github.io/downloads/NOPTREXPoster.pdf"
+        },
+        {
+          "title": "A. Moseley, A. Wang, A. Imran, ”Context-Aware Multitasking for Medical Image Segmentation”, University of Kentucky 5 Minute Fast Track, Lexington, KY, October 2023.",
+          "url": "https://aaronmoseley.github.io/downloads/CMU-Net5MinuteFastTrack.pdf"
+        }
+      ]
+    }
+  ],
   "education": [
     {
       "institution": "University of Kentucky",
