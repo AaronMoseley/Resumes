@@ -1,3 +1,3 @@
-source .venv/bin/activate
+source ~/Utilities/Resumes/.venv/bin/activate
 
-python app.py
+python ~/Utilities/Resumes/app.py
