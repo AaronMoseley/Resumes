@@ -215,6 +215,11 @@ def sec_header(display_name, st, s):
     return [Paragraph(display_name.upper(), st["section"]), rule(s)]
 
 
+def anchor_header(display_name, st, s, first_block):
+    """Return a KeepTogether of the section header + first_block (list of flowables)."""
+    return KeepTogether(sec_header(display_name, st, s) + first_block)
+
+
 def two_col(left, right, page_width):
     t = Table([[left, right]], colWidths=[page_width * 0.65, page_width * 0.35])
     t.setStyle(TableStyle([
@@ -235,8 +240,8 @@ def render_text(sec_def, data, st, s, pw):
     value = data.get(sec_def["json_key"])
     if not value:
         return []
-    story = sec_header(sec_def["display_name"], st, s)
-    story.append(Paragraph(safe(value), st["body"]))
+    para = Paragraph(safe(value), st["body"])
+    story = [anchor_header(sec_def["display_name"], st, s, [para])]
     story.append(Spacer(1, s["space_between_sections"]))
     return story
 
@@ -249,7 +254,7 @@ def render_entries(sec_def, data, st, s, pw):
     items = data.get(sec_def["json_key"])
     if not items:
         return []
-    story = sec_header(sec_def["display_name"], st, s)
+    story = []
     for i, entry in enumerate(items):
         title = (entry.get("title") or entry.get("degree") or
                  entry.get("role") or "")
@@ -284,7 +289,11 @@ def render_entries(sec_def, data, st, s, pw):
                 f'{s["bullet_char"]}  {safe(b)}', st["bullet"]))
 
         block.append(Spacer(1, s["space_after_entry"] if i < len(items)-1 else 0))
-        story.append(KeepTogether(block))
+
+        if i == 0:
+            story.append(anchor_header(sec_def["display_name"], st, s, block))
+        else:
+            story.append(KeepTogether(block))
 
     story.append(Spacer(1, s["space_between_sections"]))
     return story
@@ -294,14 +303,19 @@ def render_skills(sec_def, data, st, s, pw):
     value = data.get(sec_def["json_key"])
     if not value:
         return []
-    story = sec_header(sec_def["display_name"], st, s)
     if isinstance(value, dict):
-        for cat, items in value.items():
-            story.append(Paragraph(
-                f'<b>{safe(cat)}:</b>  {", ".join(safe(x) for x in items)}',
-                st["body"]))
+        paras = [Paragraph(
+            f'<b>{safe(cat)}:</b>  {", ".join(safe(x) for x in items)}',
+            st["body"]) for cat, items in value.items()]
     elif isinstance(value, list):
-        story.append(Paragraph(", ".join(safe(x) for x in value), st["body"]))
+        paras = [Paragraph(", ".join(safe(x) for x in value), st["body"])]
+    else:
+        paras = []
+    if not paras:
+        return []
+    story = [anchor_header(sec_def["display_name"], st, s, [paras[0]])]
+    for p in paras[1:]:
+        story.append(p)
     story.append(Spacer(1, s["space_between_sections"]))
     return story
 
@@ -310,10 +324,11 @@ def render_bullets(sec_def, data, st, s, pw):
     items = data.get(sec_def["json_key"])
     if not items:
         return []
-    story = sec_header(sec_def["display_name"], st, s)
-    for item in items:
-        story.append(Paragraph(
-            f'{s["bullet_char"]}  {safe(item)}', st["bullet"]))
+    paras = [Paragraph(f'{s["bullet_char"]}  {safe(item)}', st["bullet"])
+             for item in items]
+    story = [anchor_header(sec_def["display_name"], st, s, [paras[0]])]
+    for p in paras[1:]:
+        story.append(p)
     story.append(Spacer(1, s["space_between_sections"]))
     return story
 
@@ -326,7 +341,7 @@ def render_url_list(sec_def, data, st, s, pw):
     items = data.get(sec_def["json_key"])
     if not items:
         return []
-    story = sec_header(sec_def["display_name"], st, s)
+    story = []
     for i, item in enumerate(items):
         name = safe(item.get("name", ""))
         url  = item.get("url", "")
@@ -347,7 +362,11 @@ def render_url_list(sec_def, data, st, s, pw):
                 f'{s["bullet_char"]}  {safe(b)}', st["bullet"]))
 
         block.append(Spacer(1, s["space_after_entry"] if i < len(items)-1 else 0))
-        story.append(KeepTogether(block))
+
+        if i == 0:
+            story.append(anchor_header(sec_def["display_name"], st, s, block))
+        else:
+            story.append(KeepTogether(block))
 
     story.append(Spacer(1, s["space_between_sections"]))
     return story
@@ -361,16 +380,16 @@ def render_grouped_list(sec_def, data, st, s, pw):
     groups = data.get(sec_def["json_key"])
     if not groups:
         return []
-    story = sec_header(sec_def["display_name"], st, s)
+    story = []
+    first_section_item = True  # tracks whether we've emitted the anchored header yet
 
     for g_idx, group in enumerate(groups):
         if not isinstance(group, dict):
             continue
         heading = group.get("heading", "")
-        if heading:
-            story.append(Paragraph(safe(heading), st["subheading"]))
+        group_items = group.get("items", [])
 
-        for i, item in enumerate(group.get("items", [])):
+        for i, item in enumerate(group_items):
             title   = safe(item.get("title", ""))
             details = item.get("details", "")
             url     = item.get("url", "")
@@ -391,8 +410,21 @@ def render_grouped_list(sec_def, data, st, s, pw):
                     f'{s["bullet_char"]}  {safe(b)}', st["bullet"]))
 
             gap = s["space_after_bullet"] + 2
-            block.append(Spacer(1, gap if i < len(group.get("items", []))-1 else 2))
-            story.append(KeepTogether(block))
+            block.append(Spacer(1, gap if i < len(group_items)-1 else 2))
+
+            if first_section_item:
+                # Wrap section header + optional group subheading + first item together
+                anchor_block = []
+                if heading:
+                    anchor_block.append(Paragraph(safe(heading), st["subheading"]))
+                anchor_block += block
+                story.append(anchor_header(sec_def["display_name"], st, s, anchor_block))
+                first_section_item = False
+            elif i == 0 and heading:
+                # First item of a subsequent group: keep subheading with it
+                story.append(KeepTogether([Paragraph(safe(heading), st["subheading"])] + block))
+            else:
+                story.append(KeepTogether(block))
 
         if g_idx < len(groups) - 1:
             story.append(Spacer(1, s["space_after_entry"]))
